@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "joke": {
+      "JOKE00": {
+        "id": "JOKE00",
+        "punchline": "s29",
+        "setup": "s2a",
+        "type": "s2b",
+        "number": "NUMBER01"
+      },
+      "JOKE01": {
+        "id": "JOKE01",
+        "punchline": "s51",
+        "setup": "s52",
+        "type": "s53",
+        "number": "NUMBER01"
+      },
+      "JOKE02": {
+        "id": "JOKE02",
+        "punchline": "s79",
+        "setup": "s7a",
+        "type": "s7b",
+        "number": "NUMBER01"
+      }
+    }
+  },
+  "new": {
+    "joke": {
+      "joke_ref01": {
+        "punchline": "sa1",
+        "setup": "sa2",
+        "type": "sa3"
+      }
+    }
+  }
+}

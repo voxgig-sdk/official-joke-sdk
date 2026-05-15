@@ -1,0 +1,29 @@
+# Entity: type
+
+main: kit: entity: type: {
+
+  alias: field: {}
+
+  name: "type"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/types"
+          parts: [
+            "types"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,45 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 9
+  metrics: count: method: 9
+
+  entity: joke: {
+    path: "/jokes/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+    path: "/jokes/random/{number}": {
+      op: load: method: *GET
+    }
+    path: "/jokes/ten": {
+      action: "ten": {}
+      op: list: method: *GET
+    }
+    path: "/jokes/{id}": {
+      op: load: method: *GET
+    }
+    path: "/jokes/{type}/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+    path: "/jokes/{type}/ten": {
+      action: "ten": {}
+      op: list: method: *GET
+    }
+    path: "/random_joke": {
+      op: load: method: *GET
+    }
+    path: "/random_ten": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: type: {
+    path: "/types": {
+      op: list: method: *GET
+    }
+  }
+
+}

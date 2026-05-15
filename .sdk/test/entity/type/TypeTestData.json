@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "type": {
+      "TYPE00": {},
+      "TYPE01": {},
+      "TYPE02": {}
+    }
+  },
+  "new": {
+    "type": {
+      "type_ref01": {}
+    }
+  }
+}

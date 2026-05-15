@@ -1,0 +1,367 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Official Joke API",
+    "description": "This API provides a collection of jokes and allows users to retrieve random jokes or jokes by type. It supports various endpoints to fetch single or multiple jokes, making it easy to add humor to applications or projects.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/15Dkatz/official_joke_api"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/15Dkatz/official_joke_api/blob/master/LICENCE"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://official-joke-api.appspot.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/random_joke": {
+      "get": {
+        "summary": "Get a random joke",
+        "description": "Retrieves a single random joke from the collection",
+        "operationId": "getRandomJoke",
+        "tags": [
+          "Jokes"
+        ],
+        "responses": {
+          "200": {
+            "description": "A random joke",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Joke"
+                },
+                "example": {
+                  "id": 1,
+                  "type": "programming",
+                  "setup": "What's the best thing about a Boolean?",
+                  "punchline": "Even if you're wrong, you're only off by a bit."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/random": {
+      "get": {
+        "summary": "Get a random joke (alternative endpoint)",
+        "description": "Retrieves a single random joke from the collection",
+        "operationId": "getRandomJokeAlt",
+        "tags": [
+          "Jokes"
+        ],
+        "responses": {
+          "200": {
+            "description": "A random joke",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Joke"
+                },
+                "example": {
+                  "id": 1,
+                  "type": "programming",
+                  "setup": "What's the best thing about a Boolean?",
+                  "punchline": "Even if you're wrong, you're only off by a bit."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/types": {
+      "get": {
+        "summary": "Get joke types",
+        "description": "Retrieves a list of all available joke types/categories",
+        "operationId": "getJokeTypes",
+        "tags": [
+          "Types"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of joke types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "general",
+                  "programming",
+                  "knock-knock"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/random_ten": {
+      "get": {
+        "summary": "Get ten random jokes",
+        "description": "Retrieves ten random jokes from the collection",
+        "operationId": "getTenRandomJokes",
+        "tags": [
+          "Jokes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ten random jokes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Joke"
+                  },
+                  "minItems": 10,
+                  "maxItems": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/ten": {
+      "get": {
+        "summary": "Get ten random jokes (alternative endpoint)",
+        "description": "Retrieves ten random jokes from the collection",
+        "operationId": "getTenRandomJokesAlt",
+        "tags": [
+          "Jokes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ten random jokes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Joke"
+                  },
+                  "minItems": 10,
+                  "maxItems": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/random/{number}": {
+      "get": {
+        "summary": "Get any number of random jokes",
+        "description": "Retrieves a specified number of random jokes from the collection",
+        "operationId": "getRandomJokesNumber",
+        "tags": [
+          "Jokes"
+        ],
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "description": "The number of random jokes to retrieve",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Specified number of random jokes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Joke"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/{type}/random": {
+      "get": {
+        "summary": "Get a random joke by type",
+        "description": "Retrieves a single random joke of the specified type",
+        "operationId": "getRandomJokeByType",
+        "tags": [
+          "Jokes"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type/category of joke to retrieve",
+            "schema": {
+              "type": "string",
+              "example": "programming"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A random joke of the specified type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Joke"
+                },
+                "example": {
+                  "id": 1,
+                  "type": "programming",
+                  "setup": "What's the best thing about a Boolean?",
+                  "punchline": "Even if you're wrong, you're only off by a bit."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/{type}/ten": {
+      "get": {
+        "summary": "Get ten random jokes by type",
+        "description": "Retrieves ten random jokes of the specified type",
+        "operationId": "getTenRandomJokesByType",
+        "tags": [
+          "Jokes"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type/category of jokes to retrieve",
+            "schema": {
+              "type": "string",
+              "example": "programming"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ten random jokes of the specified type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Joke"
+                  },
+                  "minItems": 10,
+                  "maxItems": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jokes/{id}": {
+      "get": {
+        "summary": "Get joke by ID",
+        "description": "Retrieves a specific joke by its ID",
+        "operationId": "getJokeById",
+        "tags": [
+          "Jokes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the joke to retrieve",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A joke with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Joke"
+                },
+                "example": {
+                  "id": 1,
+                  "type": "programming",
+                  "setup": "What's the best thing about a Boolean?",
+                  "punchline": "Even if you're wrong, you're only off by a bit."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Joke not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Joke": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the joke",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "description": "The category/type of the joke",
+            "example": "programming"
+          },
+          "setup": {
+            "type": "string",
+            "description": "The setup/question part of the joke",
+            "example": "What's the best thing about a Boolean?"
+          },
+          "punchline": {
+            "type": "string",
+            "description": "The punchline/answer part of the joke",
+            "example": "Even if you're wrong, you're only off by a bit."
+          }
+        },
+        "required": [
+          "type",
+          "setup",
+          "punchline"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Jokes",
+      "description": "Endpoints for retrieving jokes"
+    },
+    {
+      "name": "Types",
+      "description": "Endpoints for retrieving joke types"
+    }
+  ]
+}
