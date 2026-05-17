@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/official-joke-sdk"
-	"github.com/voxgig-sdk/official-joke-sdk/core"
+	sdk "github.com/voxgig-sdk/official-joke-sdk/go"
+	"github.com/voxgig-sdk/official-joke-sdk/go/core"
 )
 
 func TestTypeDirect(t *testing.T) {

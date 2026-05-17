@@ -1,10 +1,10 @@
 package voxgigofficialjokesdk
 
 import (
-	"github.com/voxgig-sdk/official-joke-sdk/core"
-	"github.com/voxgig-sdk/official-joke-sdk/entity"
-	"github.com/voxgig-sdk/official-joke-sdk/feature"
-	_ "github.com/voxgig-sdk/official-joke-sdk/utility"
+	"github.com/voxgig-sdk/official-joke-sdk/go/core"
+	"github.com/voxgig-sdk/official-joke-sdk/go/entity"
+	"github.com/voxgig-sdk/official-joke-sdk/go/feature"
+	_ "github.com/voxgig-sdk/official-joke-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/official-joke-sdk/core"
+	"github.com/voxgig-sdk/official-joke-sdk/go/core"
 )
 
 type BaseFeature struct {
