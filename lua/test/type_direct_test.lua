@@ -63,14 +63,12 @@ function type_direct_setup(mockres)
   local env = runner.env_override({
     ["OFFICIALJOKE_TEST_TYPE_ENTID"] = {},
     ["OFFICIALJOKE_TEST_LIVE"] = "FALSE",
-    ["OFFICIALJOKE_APIKEY"] = "NONE",
   })
 
   local live = env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["OFFICIALJOKE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

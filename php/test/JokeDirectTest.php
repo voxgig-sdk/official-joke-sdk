@@ -135,14 +135,12 @@ function joke_direct_setup($mockres)
     $env = Runner::env_override([
         "OFFICIALJOKE_TEST_JOKE_ENTID" => [],
         "OFFICIALJOKE_TEST_LIVE" => "FALSE",
-        "OFFICIALJOKE_APIKEY" => "NONE",
     ]);
 
     $live = $env["OFFICIALJOKE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["OFFICIALJOKE_APIKEY"],
         ];
         $client = new OfficialJokeSDK($merged_opts);
         return [

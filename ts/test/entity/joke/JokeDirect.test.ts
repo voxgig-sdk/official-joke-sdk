@@ -124,14 +124,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'OFFICIALJOKE_TEST_JOKE_ENTID': {},
     'OFFICIALJOKE_TEST_LIVE': 'FALSE',
-    'OFFICIALJOKE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.OFFICIALJOKE_TEST_LIVE
 
   if (live) {
     const client = new OfficialJokeSDK({
-      apikey: env.OFFICIALJOKE_APIKEY,
     })
 
     let idmap: any = env['OFFICIALJOKE_TEST_JOKE_ENTID']

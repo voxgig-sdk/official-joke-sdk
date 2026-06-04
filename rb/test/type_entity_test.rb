@@ -83,7 +83,6 @@ def type_basic_setup(extra)
     "OFFICIALJOKE_TEST_TYPE_ENTID" => idmap,
     "OFFICIALJOKE_TEST_LIVE" => "FALSE",
     "OFFICIALJOKE_TEST_EXPLAIN" => "FALSE",
-    "OFFICIALJOKE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +94,6 @@ def type_basic_setup(extra)
   if env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OFFICIALJOKE_APIKEY"],
       },
       extra || {},
     ])

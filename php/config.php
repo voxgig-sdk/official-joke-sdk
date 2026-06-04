@@ -20,9 +20,6 @@ class OfficialJokeConfig
             ],
             "options" => [
                 "base" => "https://official-joke-api.appspot.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
