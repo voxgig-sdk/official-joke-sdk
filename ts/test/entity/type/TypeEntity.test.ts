@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'OFFICIAL_JOKE_TEST_TYPE_ENTID': idmap,
     'OFFICIAL_JOKE_TEST_LIVE': 'FALSE',
     'OFFICIAL_JOKE_TEST_EXPLAIN': 'FALSE',
+    'OFFICIAL_JOKE_APIKEY': 'NONE',
   })
 
   idmap = env['OFFICIAL_JOKE_TEST_TYPE_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new OfficialJokeSDK(merge([
       {
+        apikey: env.OFFICIAL_JOKE_APIKEY,
       },
       extra
     ]))

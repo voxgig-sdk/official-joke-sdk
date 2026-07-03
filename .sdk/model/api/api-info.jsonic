@@ -20,30 +20,7 @@ main: {
       ]
       title: "Official Joke API"
       version: "1.0.0"
-      tagline: "Grab random programmer and general jokes, or fetch by type or id, from a small community-run REST endpoint"
-      homepage: "https://official-joke-api.appspot.com"
-      docs_url: "https://github.com/15Dkatz/official_joke_api"
-      license_short: "MIT licence; community-maintained by David Katz (15Dkatz)"
-      license_md: `- Source code is published under the MIT licence on the [GitHub repository](https://github.com/15Dkatz/official_joke_api).
-- Maintained by [David Katz (15Dkatz)](https://github.com/15Dkatz); jokes are crowd-contributed via pull requests to \`jokes/index.json\`.
-- Free to use without authentication; please credit the upstream project when redistributing the joke corpus.`
-      about_md: `The [Official Joke API](https://official-joke-api.appspot.com) is a small open-source service that returns short setup/punchline jokes drawn from a community-maintained corpus. It is run by [David Katz](https://github.com/15Dkatz) and the joke list is updated via pull requests to the [project repository](https://github.com/15Dkatz/official_joke_api).
-
-What you get from the API:
-
-- A single random joke via \`/random_joke\` or \`/jokes/random\`.
-- Ten random jokes via \`/random_ten\` or \`/jokes/ten\`.
-- A batch of N random jokes via \`/jokes/random/<number>\`.
-- The list of available joke types via \`/types\`.
-- Random or batched jokes filtered by type via \`/jokes/<type>/random\` and \`/jokes/<type>/ten\` (for example \`/jokes/programming/random\`).
-- A specific joke by identifier via \`/jokes/<id>\`.
-
-Each joke response carries a \`type\`, \`setup\`, \`punchline\`, and \`id\`. No authentication is required and CORS is enabled, so the endpoints can be called directly from a browser. The service does not document rate limits; it is hosted on Google App Engine and intended for small, casual workloads.`
-      entity_desc: {
-        joke: "A short setup/punchline pair with a `type` and numeric `id`, retrievable via `/random_joke`, `/jokes/random`, `/jokes/random/<number>`, `/jokes/ten`, or `/jokes/<id>`."
-        type: "A joke category such as `programming` or `general`; the full list is available at `/types`, and category-filtered jokes are fetched via `/jokes/<type>/random` and `/jokes/<type>/ten`."
-      }
-      auth: false
     }
   }
 }
+

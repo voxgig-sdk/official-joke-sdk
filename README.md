@@ -1,23 +1,8 @@
 # OfficialJoke SDK
 
-Grab random programmer and general jokes, or fetch by type or id, from a small community-run REST endpoint
+Official Joke API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Official Joke API
-
-The [Official Joke API](https://official-joke-api.appspot.com) is a small open-source service that returns short setup/punchline jokes drawn from a community-maintained corpus. It is run by [David Katz](https://github.com/15Dkatz) and the joke list is updated via pull requests to the [project repository](https://github.com/15Dkatz/official_joke_api).
-
-What you get from the API:
-
-- A single random joke via `/random_joke` or `/jokes/random`.
-- Ten random jokes via `/random_ten` or `/jokes/ten`.
-- A batch of N random jokes via `/jokes/random/<number>`.
-- The list of available joke types via `/types`.
-- Random or batched jokes filtered by type via `/jokes/<type>/random` and `/jokes/<type>/ten` (for example `/jokes/programming/random`).
-- A specific joke by identifier via `/jokes/<id>`.
-
-Each joke response carries a `type`, `setup`, `punchline`, and `id`. No authentication is required and CORS is enabled, so the endpoints can be called directly from a browser. The service does not document rate limits; it is hosted on Google App Engine and intended for small, casual workloads.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install official-joke-sdk
 luarocks install official-joke-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { OfficialJokeSDK } from 'official-joke'
 
-const client = new OfficialJokeSDK({})
+const client = new OfficialJokeSDK({
+  apikey: process.env.OFFICIAL-JOKE_APIKEY,
+})
 
 // List all jokes
 const jokes = await client.Joke().list()
+console.log(jokes.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Joke** | A short setup/punchline pair with a `type` and numeric `id`, retrievable via `/random_joke`, `/jokes/random`, `/jokes/random/<number>`, `/jokes/ten`, or `/jokes/<id>`. | `/jokes/{type}/ten` |
-| **Type** | A joke category such as `programming` or `general`; the full list is available at `/types`, and category-filtered jokes are fetched via `/jokes/<type>/random` and `/jokes/<type>/ten`. | `/types` |
+| **Joke** |  | `/jokes/{type}/ten` |
+| **Type** |  | `/types` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,17 +101,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from officialjoke_sdk import OfficialJokeSDK
 
-client = OfficialJokeSDK({})
+client = OfficialJokeSDK({
+    "apikey": os.environ.get("OFFICIAL-JOKE_APIKEY"),
+})
 
 # List all jokes
-jokes, err = client.Joke(None).list(None, None)
+jokes, err = client.Joke().list()
+print(jokes)
 
 # Load a specific joke
-joke, err = client.Joke(None).load(
-    {"id": "example_id"}, None
-)
+joke, err = client.Joke().load({"id": "example_id"})
+print(joke)
 ```
 
 ### PHP
@@ -133,15 +123,17 @@ joke, err = client.Joke(None).load(
 <?php
 require_once 'officialjoke_sdk.php';
 
-$client = new OfficialJokeSDK([]);
+$client = new OfficialJokeSDK([
+    "apikey" => getenv("OFFICIAL-JOKE_APIKEY"),
+]);
 
 // List all jokes
-[$jokes, $err] = $client->Joke(null)->list(null, null);
+[$jokes, $err] = $client->Joke()->list();
+print_r($jokes);
 
 // Load a specific joke
-[$joke, $err] = $client->Joke(null)->load(
-    ["id" => "example_id"], null
-);
+[$joke, $err] = $client->Joke()->load(["id" => "example_id"]);
+print_r($joke);
 ```
 
 ### Golang
@@ -149,10 +141,13 @@ $client = new OfficialJokeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/official-joke-sdk/go"
 
-client := sdk.NewOfficialJokeSDK(map[string]any{})
+client := sdk.NewOfficialJokeSDK(map[string]any{
+    "apikey": os.Getenv("OFFICIAL-JOKE_APIKEY"),
+})
 
 // List all jokes
 jokes, err := client.Joke(nil).List(nil, nil)
+fmt.Println(jokes)
 ```
 
 ### Ruby
@@ -160,15 +155,17 @@ jokes, err := client.Joke(nil).List(nil, nil)
 ```ruby
 require_relative "OfficialJoke_sdk"
 
-client = OfficialJokeSDK.new({})
+client = OfficialJokeSDK.new({
+  "apikey" => ENV["OFFICIAL-JOKE_APIKEY"],
+})
 
 # List all jokes
-jokes, err = client.Joke(nil).list(nil, nil)
+jokes, err = client.Joke().list
+puts jokes
 
 # Load a specific joke
-joke, err = client.Joke(nil).load(
-  { "id" => "example_id" }, nil
-)
+joke, err = client.Joke().load({ "id" => "example_id" })
+puts joke
 ```
 
 ### Lua
@@ -176,15 +173,17 @@ joke, err = client.Joke(nil).load(
 ```lua
 local sdk = require("official-joke_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OFFICIAL-JOKE_APIKEY"),
+})
 
 -- List all jokes
-local jokes, err = client:Joke(nil):list(nil, nil)
+local jokes, err = client:Joke():list()
+print(jokes)
 
 -- Load a specific joke
-local joke, err = client:Joke(nil):load(
-  { id = "example_id" }, nil
-)
+local joke, err = client:Joke():load({ id = "example_id" })
+print(joke)
 ```
 
 ## Unit testing in offline mode
@@ -203,25 +202,21 @@ const result = await client.Joke().load({ id: 'test01' })
 ### Python
 
 ```python
-client = OfficialJokeSDK.test(None, None)
-result, err = client.Joke(None).load(
-    {"id": "test01"}, None
-)
+client = OfficialJokeSDK.test()
+result, err = client.Joke().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = OfficialJokeSDK::test(null, null);
-[$result, $err] = $client->Joke(null)->load(
-    ["id" => "test01"], null
-);
+$client = OfficialJokeSDK::test();
+[$result, $err] = $client->Joke()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Joke(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -230,19 +225,15 @@ result, err := client.Joke(nil).Load(
 ### Ruby
 
 ```ruby
-client = OfficialJokeSDK.test(nil, nil)
-result, err = client.Joke(nil).load(
-  { "id" => "test01" }, nil
-)
+client = OfficialJokeSDK.test
+result, err = client.Joke().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Joke(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Joke():load({ id = "test01" })
 ```
 
 ## How it works
@@ -346,15 +337,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Official Joke API
-
-- Upstream: [https://official-joke-api.appspot.com](https://official-joke-api.appspot.com)
-- API docs: [https://github.com/15Dkatz/official_joke_api](https://github.com/15Dkatz/official_joke_api)
-
-- Source code is published under the MIT licence on the [GitHub repository](https://github.com/15Dkatz/official_joke_api).
-- Maintained by [David Katz (15Dkatz)](https://github.com/15Dkatz); jokes are crowd-contributed via pull requests to `jokes/index.json`.
-- Free to use without authentication; please credit the upstream project when redistributing the joke corpus.
 
 ---
 

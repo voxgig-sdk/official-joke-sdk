@@ -61,12 +61,14 @@ def _type_direct_setup(mockres):
     env = runner.env_override({
         "OFFICIALJOKE_TEST_TYPE_ENTID": {},
         "OFFICIALJOKE_TEST_LIVE": "FALSE",
+        "OFFICIALJOKE_APIKEY": "NONE",
     })
 
     live = env.get("OFFICIALJOKE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("OFFICIALJOKE_APIKEY"),
         }
         client = OfficialJokeSDK(merged_opts)
         return {
