@@ -10,7 +10,7 @@ The Lua SDK for the OfficialJoke API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install official-joke-sdk
+luarocks install voxgig-sdk-official-joke
 ```
 
 If the module is not yet published, add the source directory to

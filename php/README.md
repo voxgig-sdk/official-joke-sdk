@@ -10,7 +10,7 @@ The PHP SDK for the OfficialJoke API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/official-joke-sdk
+composer require voxgig-sdk/official-joke
 ```
 
 

@@ -10,13 +10,13 @@ The Ruby SDK for the OfficialJoke API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install official-joke-sdk
+gem install voxgig-sdk-official-joke
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "official-joke-sdk"
+gem "voxgig-sdk-official-joke"
 ```
 
 Then run:

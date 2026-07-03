@@ -10,7 +10,7 @@ The TypeScript SDK for the OfficialJoke API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install official-joke
+npm install @voxgig-sdk/official-joke
 ```
 ## Tutorial: your first API call
 

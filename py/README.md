@@ -10,7 +10,7 @@ The Python SDK for the OfficialJoke API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install official-joke-sdk
+pip install voxgig-sdk-official-joke
 ```
 
 Or install from source:
