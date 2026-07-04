@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -88,7 +87,7 @@ same parameters as `direct()`.
 ## JokeEntity
 
 ```lua
-local joke = client:Joke(nil)
+local joke = client:joke(nil)
 ```
 
 ### Fields
@@ -107,7 +106,7 @@ local joke = client:Joke(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Joke():list()
+local results, err = client:joke():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -115,7 +114,7 @@ local results, err = client:Joke():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Joke():load({ id = "joke_id" })
+local result, err = client:joke():load({ id = "joke_id" })
 ```
 
 ### Common Methods
@@ -151,7 +150,7 @@ Return the entity name.
 ## TypeEntity
 
 ```lua
-local type = client:Type(nil)
+local type = client:type(nil)
 ```
 
 ### Operations
@@ -161,7 +160,7 @@ local type = client:Type(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Type():list()
+local results, err = client:type():list()
 ```
 
 ### Common Methods

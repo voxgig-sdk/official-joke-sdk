@@ -50,8 +50,7 @@ class TypeEntityTest extends TestCase
         $type_ref01_ent = $client->Type(null);
         $type_ref01_match = [];
 
-        [$type_ref01_list_result, $err] = $type_ref01_ent->list($type_ref01_match, null);
-        $this->assertNull($err);
+        $type_ref01_list_result = $type_ref01_ent->list($type_ref01_match, null);
         $this->assertIsArray($type_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function type_basic_setup($extra)
         "OFFICIALJOKE_TEST_TYPE_ENTID" => $idmap,
         "OFFICIALJOKE_TEST_LIVE" => "FALSE",
         "OFFICIALJOKE_TEST_EXPLAIN" => "FALSE",
-        "OFFICIALJOKE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function type_basic_setup($extra)
     if ($env["OFFICIALJOKE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OFFICIALJOKE_APIKEY"],
             ],
             $extra ?? [],
         ]);

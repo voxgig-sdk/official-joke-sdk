@@ -20,9 +20,6 @@ class OfficialJokeConfig
             ],
             "options" => [
                 "base" => "https://official-joke-api.appspot.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -81,6 +78,7 @@ class OfficialJokeConfig
                         'orig' => 'type',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -155,6 +153,7 @@ class OfficialJokeConfig
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -187,6 +186,7 @@ class OfficialJokeConfig
                         'orig' => 'number',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -220,6 +220,7 @@ class OfficialJokeConfig
                         'orig' => 'type',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

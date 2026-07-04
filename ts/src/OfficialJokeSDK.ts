@@ -3,6 +3,8 @@
 import { JokeEntity } from './entity/JokeEntity'
 import { TypeEntity } from './entity/TypeEntity'
 
+export type * from './OfficialJokeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class OfficialJokeSDK {
 
 
 
+  _joke?: JokeEntity
+
+  // Idiomatic facade: `client.joke.list()` / `client.joke.load({ id })`.
+  get joke(): JokeEntity {
+    return (this._joke ??= new JokeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.joke` instead. */
   Joke(data?: any) {
     const self = this
     return new JokeEntity(self,data)
   }
 
 
+  _type?: TypeEntity
+
+  // Idiomatic facade: `client.type.list()` / `client.type.load({ id })`.
+  get type(): TypeEntity {
+    return (this._type ??= new TypeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.type` instead. */
   Type(data?: any) {
     const self = this
     return new TypeEntity(self,data)

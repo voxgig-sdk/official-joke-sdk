@@ -50,8 +50,7 @@ class TestTypeEntity:
         type_ref01_ent = client.Type(None)
         type_ref01_match = {}
 
-        type_ref01_list_result, err = type_ref01_ent.list(type_ref01_match, None)
-        assert err is None
+        type_ref01_list_result = type_ref01_ent.list(type_ref01_match, None)
         assert isinstance(type_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _type_basic_setup(extra):
         "OFFICIALJOKE_TEST_TYPE_ENTID": idmap,
         "OFFICIALJOKE_TEST_LIVE": "FALSE",
         "OFFICIALJOKE_TEST_EXPLAIN": "FALSE",
-        "OFFICIALJOKE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _type_basic_setup(extra):
     if env.get("OFFICIALJOKE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OFFICIALJOKE_APIKEY"),
             },
             extra or {},
         ])

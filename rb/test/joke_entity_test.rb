@@ -43,16 +43,14 @@ class JokeEntityTest < Minitest::Test
     joke_ref01_ent = client.Joke(nil)
     joke_ref01_match = {}
 
-    joke_ref01_list_result, err = joke_ref01_ent.list(joke_ref01_match, nil)
-    assert_nil err
+    joke_ref01_list_result = joke_ref01_ent.list(joke_ref01_match, nil)
     assert joke_ref01_list_result.is_a?(Array)
 
     # LOAD
     joke_ref01_match_dt0 = {
       "id" => joke_ref01_data["id"],
     }
-    joke_ref01_data_dt0_loaded, err = joke_ref01_ent.load(joke_ref01_match_dt0, nil)
-    assert_nil err
+    joke_ref01_data_dt0_loaded = joke_ref01_ent.load(joke_ref01_match_dt0, nil)
     joke_ref01_data_dt0_load_result = Helpers.to_map(joke_ref01_data_dt0_loaded)
     assert !joke_ref01_data_dt0_load_result.nil?
     assert_equal joke_ref01_data_dt0_load_result["id"], joke_ref01_data["id"]
@@ -93,7 +91,6 @@ def joke_basic_setup(extra)
     "OFFICIALJOKE_TEST_JOKE_ENTID" => idmap,
     "OFFICIALJOKE_TEST_LIVE" => "FALSE",
     "OFFICIALJOKE_TEST_EXPLAIN" => "FALSE",
-    "OFFICIALJOKE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def joke_basic_setup(extra)
   if env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OFFICIALJOKE_APIKEY"],
       },
       extra || {},
     ])

@@ -245,11 +245,17 @@ func (sdk *OfficialJokeSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// Joke returns a Joke entity bound to this client.
+// Idiomatic usage: client.Joke(nil).List(nil, nil) or
+// client.Joke(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OfficialJokeSDK) Joke(data map[string]any) OfficialJokeEntity {
 	return NewJokeEntityFunc(sdk, data)
 }
 
 
+// Type returns a Type entity bound to this client.
+// Idiomatic usage: client.Type(nil).List(nil, nil) or
+// client.Type(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OfficialJokeSDK) Type(data map[string]any) OfficialJokeEntity {
 	return NewTypeEntityFunc(sdk, data)
 }

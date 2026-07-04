@@ -43,8 +43,7 @@ class TypeEntityTest < Minitest::Test
     type_ref01_ent = client.Type(nil)
     type_ref01_match = {}
 
-    type_ref01_list_result, err = type_ref01_ent.list(type_ref01_match, nil)
-    assert_nil err
+    type_ref01_list_result = type_ref01_ent.list(type_ref01_match, nil)
     assert type_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def type_basic_setup(extra)
     "OFFICIALJOKE_TEST_TYPE_ENTID" => idmap,
     "OFFICIALJOKE_TEST_LIVE" => "FALSE",
     "OFFICIALJOKE_TEST_EXPLAIN" => "FALSE",
-    "OFFICIALJOKE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def type_basic_setup(extra)
   if env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OFFICIALJOKE_APIKEY"],
       },
       extra || {},
     ])

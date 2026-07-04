@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Joke,
+  JokeLoadMatch,
+  JokeListMatch,
+} from '../OfficialJokeTypes'
 
 // TODO: needs Entity superclass
-class JokeEntity extends OfficialJokeEntityBase {
+class JokeEntity extends OfficialJokeEntityBase<Joke> {
 
   constructor(client: OfficialJokeSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class JokeEntity extends OfficialJokeEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: JokeLoadMatch, ctrl?: Control): Promise<Joke> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class JokeEntity extends OfficialJokeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Joke> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: JokeListMatch, ctrl?: Control): Promise<Joke[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class JokeEntity extends OfficialJokeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Joke[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

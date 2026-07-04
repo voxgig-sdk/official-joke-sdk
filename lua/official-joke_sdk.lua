@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:joke():list() / client:joke():load({ id = ... })
+function OfficialJokeSDK:joke(data)
+  local EntityMod = require("entity.joke_entity")
+  if data == nil then
+    if self._joke == nil then
+      self._joke = EntityMod.new(self, nil)
+    end
+    return self._joke
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:joke() instead.
 function OfficialJokeSDK:Joke(data)
   local EntityMod = require("entity.joke_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:type():list() / client:type():load({ id = ... })
+function OfficialJokeSDK:type(data)
+  local EntityMod = require("entity.type_entity")
+  if data == nil then
+    if self._type == nil then
+      self._type = EntityMod.new(self, nil)
+    end
+    return self._type
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:type() instead.
 function OfficialJokeSDK:Type(data)
   local EntityMod = require("entity.type_entity")
   return EntityMod.new(self, data)

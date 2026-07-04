@@ -9,12 +9,9 @@ The Lua SDK for the OfficialJoke API — an entity-oriented client using Lua con
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-official-joke
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/official-joke-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("official-joke_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("OFFICIAL-JOKE_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List jokes
 
 ```lua
-local result, err = client:Joke():list()
+local result, err = client:joke():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a joke
 
 ```lua
-local result, err = client:Joke():load({ id = "example_id" })
+local result, err = client:joke():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:OfficialJoke():load({ id = "test01" })
+local result, err = client:joke():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +129,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-OFFICIAL-JOKE_TEST_LIVE=TRUE
-OFFICIAL-JOKE_APIKEY=<your-key>
+OFFICIAL_JOKE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -248,7 +241,7 @@ API path: `/types`
 
 ### Joke
 
-Create an instance: `const joke = client.Joke()`
+Create an instance: `const joke = client.joke`
 
 #### Operations
 
@@ -269,19 +262,19 @@ Create an instance: `const joke = client.Joke()`
 #### Example: Load
 
 ```ts
-const joke = await client.Joke().load({ id: 'joke_id' })
+const joke = await client.joke.load({ id: 'joke_id' })
 ```
 
 #### Example: List
 
 ```ts
-const jokes = await client.Joke().list()
+const jokes = await client.joke.list()
 ```
 
 
 ### Type
 
-Create an instance: `const type = client.Type()`
+Create an instance: `const type = client.type`
 
 #### Operations
 
@@ -292,7 +285,7 @@ Create an instance: `const type = client.Type()`
 #### Example: List
 
 ```ts
-const types = await client.Type().list()
+const types = await client.type.list()
 ```
 
 
@@ -367,11 +360,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local joke = client:joke()
+joke:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- joke:data_get() now returns the loaded joke data
+-- joke:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch JokeLoadMatch
+---@param ctrl? table
+---@return Joke
+---@return string? err
 function JokeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch JokeListMatch
+---@param ctrl? table
+---@return Joke[]
+---@return string? err
 function JokeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
