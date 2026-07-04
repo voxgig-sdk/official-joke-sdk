@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## JokeEntity
 
 ```ruby
-joke = client.joke
+joke = client.Joke
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ joke = client.joke
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.joke.list(nil)
+results = client.Joke.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -117,7 +117,7 @@ results = client.joke.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.joke.load({ "id" => "joke_id" })
+result = client.Joke.load({ "id" => "joke_id" })
 ```
 
 ### Common Methods
@@ -153,7 +153,7 @@ Return the entity name.
 ## TypeEntity
 
 ```ruby
-type = client.type
+type = client.Type
 ```
 
 ### Operations
@@ -163,7 +163,7 @@ type = client.type
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.type.list(nil)
+results = client.Type.list(nil)
 ```
 
 ### Common Methods

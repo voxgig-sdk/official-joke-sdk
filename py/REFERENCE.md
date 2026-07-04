@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## JokeEntity
 
 ```python
-joke = client.joke
+joke = client.Joke()
 ```
 
 ### Fields
@@ -103,7 +103,9 @@ joke = client.joke
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.joke.list({})
+results = client.Joke().list({})
+for joke in results:
+    print(joke)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -111,7 +113,7 @@ results = client.joke.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.joke.load({"id": "joke_id"})
+result = client.Joke().load({"id": "joke_id"})
 ```
 
 ### Common Methods
@@ -146,7 +148,7 @@ Return the entity name.
 ## TypeEntity
 
 ```python
-type = client.type
+type = client.Type()
 ```
 
 ### Operations
@@ -156,7 +158,9 @@ type = client.type
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.type.list({})
+results = client.Type().list({})
+for type in results:
+    print(type)
 ```
 
 ### Common Methods

@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## JokeEntity
 
 ```lua
-local joke = client:joke(nil)
+local joke = client:Joke(nil)
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ local joke = client:joke(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:joke():list()
+local results, err = client:Joke():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -114,7 +114,7 @@ local results, err = client:joke():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:joke():load({ id = "joke_id" })
+local result, err = client:Joke():load({ id = "joke_id" })
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ Return the entity name.
 ## TypeEntity
 
 ```lua
-local type = client:type(nil)
+local type = client:Type(nil)
 ```
 
 ### Operations
@@ -160,7 +160,7 @@ local type = client:type(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:type():list()
+local results, err = client:Type():list()
 ```
 
 ### Common Methods

@@ -31,24 +31,28 @@ from officialjoke_sdk import OfficialJokeSDK
 client = OfficialJokeSDK()
 ```
 
-### 2. List jokes
+### 2. List joke records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.joke.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    jokes = client.Joke().list({})
+    for joke in jokes:
+        print(joke)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a joke
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.joke.load({"id": "example_id"})
-    print(result)
+    joke = client.Joke().load({"id": "example_id"})
+    print(joke)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OfficialJokeSDK.test()
 
-result = client.joke.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+joke = client.Joke().load({"id": "test01"})
+# joke contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -243,7 +248,7 @@ API path: `/types`
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `joke = client.Joke()`
 
 #### Operations
 
@@ -263,20 +268,20 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```python
+joke = client.Joke().load({"id": "joke_id"})
 ```
 
 #### Example: List
 
-```ts
-const jokes = await client.joke.list()
+```python
+jokes = client.Joke().list({})
 ```
 
 
 ### Type
 
-Create an instance: `const type = client.type`
+Create an instance: `type = client.Type()`
 
 #### Operations
 
@@ -286,8 +291,8 @@ Create an instance: `const type = client.type`
 
 #### Example: List
 
-```ts
-const types = await client.type.list()
+```python
+types = client.Type().list({})
 ```
 
 
@@ -361,7 +366,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-joke = client.joke
+joke = client.Joke()
 joke.load({"id": "example_id"})
 
 # joke.data_get() now returns the loaded joke data

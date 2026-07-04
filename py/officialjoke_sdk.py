@@ -220,41 +220,21 @@ class OfficialJokeSDK:
         }
 
 
-    @property
-    def joke(self):
-        """Idiomatic facade: client.joke.list() / client.joke.load({"id": ...})."""
-        from entity.joke_entity import JokeEntity
-        cached = getattr(self, "_joke", None)
-        if cached is None:
-            cached = JokeEntity(self, None)
-            self._joke = cached
-        return cached
-
-    def Joke(self, data=None):
-        # Deprecated: use client.joke instead.
+    def Joke(self, data=None) -> "JokeEntity":
+        """Entity factory: client.Joke().list({}) / client.Joke().load({"id": ...})."""
         from entity.joke_entity import JokeEntity
         return JokeEntity(self, data)
 
 
-    @property
-    def type(self):
-        """Idiomatic facade: client.type.list() / client.type.load({"id": ...})."""
-        from entity.type_entity import TypeEntity
-        cached = getattr(self, "_type", None)
-        if cached is None:
-            cached = TypeEntity(self, None)
-            self._type = cached
-        return cached
-
-    def Type(self, data=None):
-        # Deprecated: use client.type instead.
+    def Type(self, data=None) -> "TypeEntity":
+        """Entity factory: client.Type().list({}) / client.Type().load({"id": ...})."""
         from entity.type_entity import TypeEntity
         return TypeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "OfficialJokeSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class OfficialJokeSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.joke_entity import JokeEntity
+    from entity.type_entity import TypeEntity

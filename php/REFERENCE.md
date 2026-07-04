@@ -89,7 +89,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## JokeEntity
 
 ```php
-$joke = $client->joke();
+$joke = $client->Joke();
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ $joke = $client->joke();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->joke()->list([]);
+$results = $client->Joke()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -116,7 +116,7 @@ $results = $client->joke()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->joke()->load(["id" => "joke_id"]);
+$result = $client->Joke()->load(["id" => "joke_id"]);
 ```
 
 ### Common Methods
@@ -152,7 +152,7 @@ Return the entity name.
 ## TypeEntity
 
 ```php
-$type = $client->type();
+$type = $client->Type();
 ```
 
 ### Operations
@@ -162,7 +162,7 @@ $type = $client->type();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->type()->list([]);
+$results = $client->Type()->list([]);
 ```
 
 ### Common Methods

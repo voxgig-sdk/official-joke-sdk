@@ -121,7 +121,7 @@ Alias for `OfficialJokeSDK.test()`.
 ## JokeEntity
 
 ```ts
-const joke = client.joke
+const joke = client.Joke()
 ```
 
 ### Fields
@@ -140,7 +140,7 @@ const joke = client.joke
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.joke.list()
+const results = await client.Joke().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -148,7 +148,7 @@ const results = await client.joke.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.joke.load({ id: 'joke_id' })
+const result = await client.Joke().load({ id: 'joke_id' })
 ```
 
 ### Common Methods
@@ -182,7 +182,7 @@ Return a copy of the entity options.
 ## TypeEntity
 
 ```ts
-const type = client.type
+const type = client.Type()
 ```
 
 ### Operations
@@ -192,7 +192,7 @@ const type = client.type
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.type.list()
+const results = await client.Type().list()
 ```
 
 ### Common Methods

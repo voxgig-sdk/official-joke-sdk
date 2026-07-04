@@ -29,18 +29,16 @@ require_once 'officialjoke_sdk.php';
 $client = new OfficialJokeSDK();
 ```
 
-### 2. List jokes
+### 2. List joke records
 
 ```php
 try {
-    $result = $client->joke()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Joke records — iterate directly.
+    $jokes = $client->Joke()->list();
+    foreach ($jokes as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->joke()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Joke record (throws on error).
+    $joke = $client->Joke()->load(["id" => "example_id"]);
+    print_r($joke);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = OfficialJokeSDK::test();
+$client = OfficialJokeSDK::test([
+    "entity" => ["joke" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->joke()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$joke = $client->Joke()->load(["id" => "test01"]);
+print_r($joke);
 ```
 
 ### Use a custom fetch function
@@ -252,7 +255,7 @@ API path: `/types`
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `$joke = $client->Joke();`
 
 #### Operations
 
@@ -272,20 +275,22 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```php
+// load() returns the bare Joke record (throws on error).
+$joke = $client->Joke()->load(["id" => "joke_id"]);
 ```
 
 #### Example: List
 
-```ts
-const jokes = await client.joke.list()
+```php
+// list() returns an array of Joke records (throws on error).
+$jokes = $client->Joke()->list();
 ```
 
 
 ### Type
 
-Create an instance: `const type = client.type`
+Create an instance: `$type = $client->Type();`
 
 #### Operations
 
@@ -295,8 +300,9 @@ Create an instance: `const type = client.type`
 
 #### Example: List
 
-```ts
-const types = await client.type.list()
+```php
+// list() returns an array of Type records (throws on error).
+$types = $client->Type()->list();
 ```
 
 
@@ -371,7 +377,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$joke = $client->joke();
+$joke = $client->Joke();
 $joke->load(["id" => "example_id"]);
 
 // $joke->dataGet() now returns the loaded joke data

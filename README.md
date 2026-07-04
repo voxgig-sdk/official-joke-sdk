@@ -26,9 +26,11 @@ import { OfficialJokeSDK } from '@voxgig-sdk/official-joke'
 
 const client = new OfficialJokeSDK()
 
-// List all jokes
-const jokes = await client.joke.list()
-console.log(jokes.data)
+// List all jokes (returns Joke[])
+const jokes = await client.Joke().list()
+for (const joke of jokes) {
+  console.log(joke)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,12 +86,13 @@ from officialjoke_sdk import OfficialJokeSDK
 
 client = OfficialJokeSDK()
 
-# List all jokes
-jokes = client.joke.list()
-print(jokes)
+# List all jokes (returns a list, raises on error)
+jokes = client.Joke().list({})
+for joke in jokes:
+    print(joke)
 
-# Load a specific joke
-joke = client.joke.load({"id": "example_id"})
+# Load a specific joke (returns the record, raises on error)
+joke = client.Joke().load({"id": "example_id"})
 print(joke)
 ```
 
@@ -101,12 +104,12 @@ require_once 'officialjoke_sdk.php';
 
 $client = new OfficialJokeSDK();
 
-// List all jokes (throws on error)
-$jokes = $client->joke()->list();
+// List all jokes (returns an array; throws on error)
+$jokes = $client->Joke()->list();
 print_r($jokes);
 
-// Load a specific joke
-$joke = $client->joke()->load(["id" => "example_id"]);
+// Load a specific joke (returns the bare record; throws on error)
+$joke = $client->Joke()->load(["id" => "example_id"]);
 print_r($joke);
 ```
 
@@ -129,12 +132,12 @@ require_relative "OfficialJoke_sdk"
 
 client = OfficialJokeSDK.new
 
-# List all jokes
-jokes = client.joke.list
+# List all jokes (returns an Array; raises on error)
+jokes = client.Joke.list
 puts jokes
 
-# Load a specific joke
-joke = client.joke.load({ "id" => "example_id" })
+# Load a specific joke (returns the bare record; raises on error)
+joke = client.Joke.load({ "id" => "example_id" })
 puts joke
 ```
 
@@ -146,11 +149,11 @@ local sdk = require("official-joke_sdk")
 local client = sdk.new()
 
 -- List all jokes
-local jokes, err = client:joke():list()
+local jokes, err = client:Joke():list()
 print(jokes)
 
 -- Load a specific joke
-local joke, err = client:joke():load({ id = "example_id" })
+local joke, err = client:Joke():load({ id = "example_id" })
 print(joke)
 ```
 
@@ -163,22 +166,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = OfficialJokeSDK.test()
-const result = await client.joke.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const joke = await client.Joke().load({ id: 1 })
+// joke is a bare Joke populated with mock data
+console.log(joke)
 ```
 
 ### Python
 
 ```python
 client = OfficialJokeSDK.test()
-result = client.joke.load({"id": "test01"})
+joke = client.Joke().load({"id": "test01"})
+print(joke)
 ```
 
 ### PHP
 
 ```php
-$client = OfficialJokeSDK::test();
-$result = $client->joke()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = OfficialJokeSDK::test([
+    "entity" => ["joke" => ["test01" => ["id" => "test01"]]],
+]);
+$joke = $client->Joke()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +201,18 @@ result, err := client.Joke(nil).Load(
 ### Ruby
 
 ```ruby
-client = OfficialJokeSDK.test
-result = client.joke.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = OfficialJokeSDK.test({
+  "entity" => { "joke" => { "test01" => { "id" => "test01" } } },
+})
+joke = client.Joke.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:joke():load({ id = "test01" })
+local result, err = client:Joke():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +260,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -28,16 +28,14 @@ require_relative "OfficialJoke_sdk"
 client = OfficialJokeSDK.new
 ```
 
-### 2. List jokes
+### 2. List joke records
 
 ```ruby
 begin
-  result = client.joke.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Joke records — iterate directly.
+  jokes = client.Joke.list
+  jokes.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.joke.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Joke record (raises on error).
+  joke = client.Joke.load({ "id" => "example_id" })
+  puts joke
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OfficialJokeSDK.test
+client = OfficialJokeSDK.test({
+  "entity" => { "joke" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.joke.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+joke = client.Joke.load({ "id" => "test01" })
+puts joke
 ```
 
 ### Use a custom fetch function
@@ -247,7 +250,7 @@ API path: `/types`
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `joke = client.Joke`
 
 #### Operations
 
@@ -267,20 +270,22 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```ruby
+# load returns the bare Joke record (raises on error).
+joke = client.Joke.load({ "id" => "joke_id" })
 ```
 
 #### Example: List
 
-```ts
-const jokes = await client.joke.list()
+```ruby
+# list returns an Array of Joke records (raises on error).
+jokes = client.Joke.list
 ```
 
 
 ### Type
 
-Create an instance: `const type = client.type`
+Create an instance: `type = client.Type`
 
 #### Operations
 
@@ -290,8 +295,9 @@ Create an instance: `const type = client.type`
 
 #### Example: List
 
-```ts
-const types = await client.type.list()
+```ruby
+# list returns an Array of Type records (raises on error).
+types = client.Type.list
 ```
 
 
@@ -366,7 +372,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-joke = client.joke
+joke = client.Joke
 joke.load({ "id" => "example_id" })
 
 # joke.data_get now returns the loaded joke data

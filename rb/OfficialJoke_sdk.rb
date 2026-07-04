@@ -208,26 +208,14 @@ class OfficialJokeSDK
   end
 
 
-  # Idiomatic facade: client.joke.list / client.joke.load({ "id" => ... })
-  def joke
-    require_relative 'entity/joke_entity'
-    @joke ||= JokeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.joke instead.
+  # Canonical facade: client.Joke.list / client.Joke.load({ "id" => ... })
   def Joke(data = nil)
     require_relative 'entity/joke_entity'
     JokeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.type.list / client.type.load({ "id" => ... })
-  def type
-    require_relative 'entity/type_entity'
-    @type ||= TypeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.type instead.
+  # Canonical facade: client.Type.list / client.Type.load({ "id" => ... })
   def Type(data = nil)
     require_relative 'entity/type_entity'
     TypeEntity.new(self, data)
