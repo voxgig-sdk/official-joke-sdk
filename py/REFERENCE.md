@@ -8,7 +8,7 @@ Complete API reference for the OfficialJoke Python SDK.
 ### Constructor
 
 ```python
-from official-joke_sdk import OfficialJokeSDK
+from officialjoke_sdk import OfficialJokeSDK
 
 client = OfficialJokeSDK(options)
 ```
@@ -91,19 +91,19 @@ joke = client.Joke()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `punchline` | ``$STRING`` | Yes |  |
-| `setup` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `id` | `int` | No |  |
+| `punchline` | `str` | Yes |  |
+| `setup` | `str` | Yes |  |
+| `type` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Joke().list({})
+results = client.Joke().list()
 for joke in results:
     print(joke)
 ```
@@ -153,12 +153,12 @@ type = client.Type()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Type().list({})
+results = client.Type().list()
 for type in results:
     print(type)
 ```

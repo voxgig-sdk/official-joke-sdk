@@ -32,8 +32,7 @@ type JokeListMatch struct {
 type Type struct {
 }
 
-// TypeListMatch mirrors the type fields as an all-optional match
-// filter (Go analog of Partial<Type>).
+// TypeListMatch is the typed request payload for Type.ListTyped.
 type TypeListMatch struct {
 }
 

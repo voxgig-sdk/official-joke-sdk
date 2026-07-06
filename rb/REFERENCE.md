@@ -8,7 +8,7 @@ Complete API reference for the OfficialJoke Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'official-joke_sdk'
+require_relative 'OfficialJoke_sdk'
 
 client = OfficialJokeSDK.new(options)
 ```
@@ -97,19 +97,19 @@ joke = client.Joke
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `punchline` | ``$STRING`` | Yes |  |
-| `setup` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `id` | `Integer` | No |  |
+| `punchline` | `String` | Yes |  |
+| `setup` | `String` | Yes |  |
+| `type` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Joke.list(nil)
+results = client.Joke.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -158,12 +158,12 @@ type = client.Type
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Type.list(nil)
+results = client.Type.list
 ```
 
 ### Common Methods

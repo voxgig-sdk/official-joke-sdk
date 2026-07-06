@@ -128,10 +128,10 @@ const joke = client.Joke()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$INTEGER`` | No |  |
-| `punchline` | ``$STRING`` | Yes |  |
-| `setup` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `id` | `number` | No |  |
+| `punchline` | `string` | Yes |  |
+| `setup` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -148,7 +148,7 @@ const results = await client.Joke().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Joke().load({ id: 'joke_id' })
+const result = await client.Joke().load({ id: 1 })
 ```
 
 ### Common Methods

@@ -40,7 +40,7 @@ class Type
 {
 }
 
-/** Match filter for Type#list (any subset of Type fields). */
+/** Request payload for Type#list. */
 class TypeListMatch
 {
 }

@@ -25,5 +25,6 @@ export interface JokeListMatch {
 export interface Type {
 }
 
-export type TypeListMatch = Partial<Type>
+export interface TypeListMatch {
+}
 
