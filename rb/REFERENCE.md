@@ -117,7 +117,7 @@ results = client.Joke.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Joke.load({ "id" => "joke_id" })
+result = client.Joke.load({ "id" => 1 })
 ```
 
 ### Common Methods

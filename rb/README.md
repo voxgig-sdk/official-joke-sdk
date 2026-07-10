@@ -49,7 +49,7 @@ end
 ```ruby
 begin
   # load returns the bare Joke record (raises on error).
-  joke = client.Joke.load({ "id" => "example_id" })
+  joke = client.Joke.load({ "id" => 1 })
   puts joke
 rescue => err
   warn "load failed: #{err}"
@@ -300,7 +300,7 @@ Create an instance: `joke = client.Joke`
 
 ```ruby
 # load returns the bare Joke record (raises on error).
-joke = client.Joke.load({ "id" => "joke_id" })
+joke = client.Joke.load({ "id" => 1 })
 ```
 
 #### Example: List

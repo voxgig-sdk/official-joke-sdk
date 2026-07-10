@@ -26,13 +26,15 @@ class Joke(JokeRequired, total=False):
     id: int
 
 
-class JokeLoadMatch(TypedDict):
+class JokeLoadMatch(TypedDict, total=False):
     id: int
     number: int
-    type: str
 
 
-class JokeListMatch(TypedDict):
+class JokeListMatch(TypedDict, total=False):
+    id: int
+    punchline: str
+    setup: str
     type: str
 
 

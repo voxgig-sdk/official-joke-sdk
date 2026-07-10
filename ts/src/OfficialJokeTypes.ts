@@ -13,13 +13,15 @@ export interface Joke {
 }
 
 export interface JokeLoadMatch {
-  id: number
-  number: number
-  type: string
+  id?: number
+  number?: number
 }
 
 export interface JokeListMatch {
-  type: string
+  id?: number
+  punchline?: string
+  setup?: string
+  type?: string
 }
 
 export interface Type {

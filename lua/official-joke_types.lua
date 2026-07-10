@@ -13,12 +13,14 @@
 ---@field type string
 
 ---@class JokeLoadMatch
----@field id number
----@field number number
----@field type string
+---@field id? number
+---@field number? number
 
 ---@class JokeListMatch
----@field type string
+---@field id? number
+---@field punchline? string
+---@field setup? string
+---@field type? string
 
 ---@class Type
 

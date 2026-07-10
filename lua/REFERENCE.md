@@ -114,7 +114,7 @@ local results, err = client:Joke():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Joke():load({ id = "joke_id" })
+local result, err = client:Joke():load({ id = 1 })
 ```
 
 ### Common Methods

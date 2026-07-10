@@ -32,25 +32,33 @@ Joke = Struct.new(
 # Request payload for Joke#load.
 #
 # @!attribute [rw] id
-#   @return [Integer]
+#   @return [Integer, nil]
 #
 # @!attribute [rw] number
-#   @return [Integer]
-#
-# @!attribute [rw] type
-#   @return [String]
+#   @return [Integer, nil]
 JokeLoadMatch = Struct.new(
   :id,
   :number,
-  :type,
   keyword_init: true
 )
 
 # Request payload for Joke#list.
 #
+# @!attribute [rw] id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] punchline
+#   @return [String, nil]
+#
+# @!attribute [rw] setup
+#   @return [String, nil]
+#
 # @!attribute [rw] type
-#   @return [String]
+#   @return [String, nil]
 JokeListMatch = Struct.new(
+  :id,
+  :punchline,
+  :setup,
   :type,
   keyword_init: true
 )

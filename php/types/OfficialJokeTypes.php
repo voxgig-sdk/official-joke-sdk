@@ -24,15 +24,17 @@ class Joke
 /** Request payload for Joke#load. */
 class JokeLoadMatch
 {
-    public int $id;
-    public int $number;
-    public string $type;
+    public ?int $id = null;
+    public ?int $number = null;
 }
 
 /** Request payload for Joke#list. */
 class JokeListMatch
 {
-    public string $type;
+    public ?int $id = null;
+    public ?string $punchline = null;
+    public ?string $setup = null;
+    public ?string $type = null;
 }
 
 /** Type entity data model. */

@@ -18,14 +18,16 @@ type Joke struct {
 
 // JokeLoadMatch is the typed request payload for Joke.LoadTyped.
 type JokeLoadMatch struct {
-	Id int `json:"id"`
-	Number int `json:"number"`
-	Type string `json:"type"`
+	Id *int `json:"id,omitempty"`
+	Number *int `json:"number,omitempty"`
 }
 
 // JokeListMatch is the typed request payload for Joke.ListTyped.
 type JokeListMatch struct {
-	Type string `json:"type"`
+	Id *int `json:"id,omitempty"`
+	Punchline *string `json:"punchline,omitempty"`
+	Setup *string `json:"setup,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // Type is the typed data model for the type entity.

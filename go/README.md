@@ -316,7 +316,7 @@ Create an instance: `joke := client.Joke(nil)`
 #### Example: Load
 
 ```go
-joke, err := client.Joke(nil).Load(map[string]any{"id": "joke_id"}, nil)
+joke, err := client.Joke(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }

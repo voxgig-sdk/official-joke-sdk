@@ -113,7 +113,7 @@ for joke in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Joke().load({"id": "joke_id"})
+result = client.Joke().load({"id": 1})
 ```
 
 ### Common Methods

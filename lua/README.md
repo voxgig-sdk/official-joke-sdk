@@ -50,7 +50,7 @@ end
 ### 3. Load a joke
 
 ```lua
-local joke, err = client:Joke():load({ id = "example_id" })
+local joke, err = client:Joke():load({ id = 1 })
 if err then error(err) end
 print(joke)
 ```
@@ -288,7 +288,7 @@ Create an instance: `local joke = client:Joke(nil)`
 #### Example: Load
 
 ```lua
-local joke, err = client:Joke():load({ id = "joke_id" })
+local joke, err = client:Joke():load({ id = 1 })
 ```
 
 #### Example: List

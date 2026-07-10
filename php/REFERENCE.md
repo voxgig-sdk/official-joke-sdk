@@ -116,7 +116,7 @@ $results = $client->Joke()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Joke()->load(["id" => "joke_id"]);
+$result = $client->Joke()->load(["id" => 1]);
 ```
 
 ### Common Methods

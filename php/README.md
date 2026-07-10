@@ -50,7 +50,7 @@ try {
 ```php
 try {
     // load() returns the bare Joke record (throws on error).
-    $joke = $client->Joke()->load(["id" => "example_id"]);
+    $joke = $client->Joke()->load(["id" => 1]);
     print_r($joke);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -310,7 +310,7 @@ Create an instance: `$joke = $client->Joke();`
 
 ```php
 // load() returns the bare Joke record (throws on error).
-$joke = $client->Joke()->load(["id" => "joke_id"]);
+$joke = $client->Joke()->load(["id" => 1]);
 ```
 
 #### Example: List
