@@ -61,11 +61,11 @@ function type_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["OFFICIALJOKE_TEST_TYPE_ENTID"] = {},
-    ["OFFICIALJOKE_TEST_LIVE"] = "FALSE",
+    ["OFFICIAL_JOKE_TEST_TYPE_ENTID"] = {},
+    ["OFFICIAL_JOKE_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
+  local live = env["OFFICIAL_JOKE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

@@ -35,7 +35,9 @@ const client = new OfficialJokeSDK()
 
 ### 2. List joke records
 
-`list()` resolves to an array of Joke objects — iterate it directly:
+`list()` resolves to an array of Joke ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const jokes = await client.Joke().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = OfficialJokeSDK.test()
 
 const joke = await client.Joke().list()
-// joke is a bare entity populated with mock response data
+// joke is the entity, populated with mock response data
+// — call joke.data() for the record itself
 console.log(joke)
 ```
 

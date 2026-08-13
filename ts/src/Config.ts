@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'OfficialJoke',
   }
 
 
@@ -107,6 +107,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/{type}/ten",
               "parts": [
@@ -129,6 +130,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/ten",
               "parts": [
@@ -147,6 +149,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/random_ten",
               "parts": [
@@ -182,6 +185,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/{id}",
               "parts": [
@@ -215,6 +219,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/random/{number}",
               "parts": [
@@ -248,6 +253,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/{type}/random",
               "parts": [
@@ -270,6 +276,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/jokes/random",
               "parts": [
@@ -288,6 +295,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/random_joke",
               "parts": [
@@ -326,6 +334,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/types",
               "parts": [

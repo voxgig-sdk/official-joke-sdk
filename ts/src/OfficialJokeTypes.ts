@@ -15,6 +15,12 @@ export interface Joke {
 export interface JokeLoadMatch {
   id?: number
   number?: number
+
+  // Selects a custom action instead of the plain load:
+  //   'random' | 'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface JokeListMatch {
@@ -22,6 +28,12 @@ export interface JokeListMatch {
   punchline?: string
   setup?: string
   type?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'ten' | 'ten'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Type {

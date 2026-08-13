@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ OfficialJokeUtility::setRegistrar(function (OfficialJokeUtility $u): void {
     $u->prepare_params = [OfficialJokePrepareParams::class, 'call'];
     $u->prepare_path = [OfficialJokePreparePath::class, 'call'];
     $u->prepare_query = [OfficialJokePrepareQuery::class, 'call'];
+    $u->graphql_body = [OfficialJokeGraphql::class, 'body'];
+    $u->graphql_errors = [OfficialJokeGraphql::class, 'errors'];
     $u->result_basic = [OfficialJokeResultBasic::class, 'call'];
     $u->result_body = [OfficialJokeResultBody::class, 'call'];
     $u->result_headers = [OfficialJokeResultHeaders::class, 'call'];

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import OfficialJokeSDK
-from core.error import OfficialJokeError
-from core.result import OfficialJokeResult
-from core.response import OfficialJokeResponse
-from core.spec import OfficialJokeSpec
-from feature.base_feature import OfficialJokeBaseFeature
+from projectname_sdk.core.error import OfficialJokeError
+from projectname_sdk.core.result import OfficialJokeResult
+from projectname_sdk.core.response import OfficialJokeResponse
+from projectname_sdk.core.spec import OfficialJokeSpec
+from projectname_sdk.feature.base_feature import OfficialJokeBaseFeature
 
 
 def _client():

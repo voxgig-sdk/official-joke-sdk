@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# OfficialJoke SDK exists test
 
 import pytest
 from officialjoke_sdk import OfficialJokeSDK

@@ -81,6 +81,7 @@ class OfficialJokeConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{type}/ten',
                   'parts' => [
@@ -103,6 +104,7 @@ class OfficialJokeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/ten',
                   'parts' => [
@@ -121,6 +123,7 @@ class OfficialJokeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random_ten',
                   'parts' => [
@@ -156,6 +159,7 @@ class OfficialJokeConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{id}',
                   'parts' => [
@@ -189,6 +193,7 @@ class OfficialJokeConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/random/{number}',
                   'parts' => [
@@ -222,6 +227,7 @@ class OfficialJokeConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{type}/random',
                   'parts' => [
@@ -244,6 +250,7 @@ class OfficialJokeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/random',
                   'parts' => [
@@ -262,6 +269,7 @@ class OfficialJokeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random_joke',
                   'parts' => [
@@ -300,6 +308,7 @@ class OfficialJokeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/types',
                   'parts' => [

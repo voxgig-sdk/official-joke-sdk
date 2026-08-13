@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Joke record (raises on error).
+  # load returns the ENTITY — call data_get for the Joke record (raises on error).
   joke = client.Joke.load({ "id" => 1 })
   puts joke
 rescue => err
@@ -134,7 +134,8 @@ client = OfficialJokeSDK.test({
   "entity" => { "joke" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 joke = client.Joke.list()
 puts joke
 ```
@@ -299,7 +300,7 @@ Create an instance: `joke = client.Joke`
 #### Example: Load
 
 ```ruby
-# load returns the bare Joke record (raises on error).
+# load returns the ENTITY — call data_get for the Joke record (raises on error).
 joke = client.Joke.load({ "id" => 1 })
 ```
 

@@ -19,11 +19,15 @@ import {
 describe('JokeDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OFFICIALJOKE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OFFICIALJOKE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OFFICIAL_JOKE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OFFICIAL_JOKE_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new OfficialJokeSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -122,17 +126,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'OFFICIALJOKE_TEST_JOKE_ENTID': {},
-    'OFFICIALJOKE_TEST_LIVE': 'FALSE',
+    'OFFICIAL_JOKE_TEST_JOKE_ENTID': {},
+    'OFFICIAL_JOKE_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.OFFICIALJOKE_TEST_LIVE
+  const live = 'TRUE' === env.OFFICIAL_JOKE_TEST_LIVE
 
   if (live) {
     const client = new OfficialJokeSDK({
     })
 
-    let idmap: any = env['OFFICIALJOKE_TEST_JOKE_ENTID']
+    let idmap: any = env['OFFICIAL_JOKE_TEST_JOKE_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

@@ -133,6 +133,29 @@ const joke = client.Joke()
 | `setup` | `string` | Yes |  |
 | `type` | `string` | Yes |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `ten` | `/jokes/{type}/ten` | `client.Joke().list({ $action: 'ten', ... })` |
+| `ten` | `/jokes/ten` | `client.Joke().list({ $action: 'ten', ... })` |
+| `random` | `/jokes/{type}/random` | `client.Joke().load({ $action: 'random', ... })` |
+| `random` | `/jokes/random` | `client.Joke().load({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Joke record — check the API definition for its shape.
+
+```ts
+const result = await client.Joke().list({
+  $action: 'ten',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `list(match: object, ctrl?: object)`

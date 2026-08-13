@@ -70,7 +70,7 @@ describe("JokeEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set OFFICIALJOKE_TEST_JOKE_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set OFFICIAL_JOKE_TEST_JOKE_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -97,7 +97,7 @@ describe("JokeEntity", function()
     }
     local joke_ref01_data_dt0_loaded, err = joke_ref01_ent:load(joke_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local joke_ref01_data_dt0_load_result = helpers.to_map(joke_ref01_data_dt0_loaded)
+    local joke_ref01_data_dt0_load_result = helpers.to_map(type(joke_ref01_data_dt0_loaded) == 'table' and joke_ref01_data_dt0_loaded.data_get and joke_ref01_data_dt0_loaded:data_get() or joke_ref01_data_dt0_loaded)
     assert.is_not_nil(joke_ref01_data_dt0_load_result)
     assert.are.equal(joke_ref01_data_dt0_load_result["id"], joke_ref01_data["id"])
 
@@ -136,22 +136,22 @@ function joke_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("OFFICIALJOKE_TEST_JOKE_ENTID")
+  local entid_env_raw = os.getenv("OFFICIAL_JOKE_TEST_JOKE_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["OFFICIALJOKE_TEST_JOKE_ENTID"] = idmap,
-    ["OFFICIALJOKE_TEST_LIVE"] = "FALSE",
-    ["OFFICIALJOKE_TEST_EXPLAIN"] = "FALSE",
+    ["OFFICIAL_JOKE_TEST_JOKE_ENTID"] = idmap,
+    ["OFFICIAL_JOKE_TEST_LIVE"] = "FALSE",
+    ["OFFICIAL_JOKE_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["OFFICIALJOKE_TEST_JOKE_ENTID"])
+    env["OFFICIAL_JOKE_TEST_JOKE_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["OFFICIALJOKE_TEST_LIVE"] == "TRUE" then
+  if env["OFFICIAL_JOKE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -160,13 +160,13 @@ function joke_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["OFFICIALJOKE_TEST_LIVE"] == "TRUE"
+  local live = env["OFFICIAL_JOKE_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["OFFICIALJOKE_TEST_EXPLAIN"] == "TRUE",
+    explain = env["OFFICIAL_JOKE_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

@@ -133,11 +133,11 @@ function joke_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "OFFICIALJOKE_TEST_JOKE_ENTID" => [],
-        "OFFICIALJOKE_TEST_LIVE" => "FALSE",
+        "OFFICIAL_JOKE_TEST_JOKE_ENTID" => [],
+        "OFFICIAL_JOKE_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["OFFICIALJOKE_TEST_LIVE"] === "TRUE";
+    $live = $env["OFFICIAL_JOKE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

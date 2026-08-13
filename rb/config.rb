@@ -76,6 +76,7 @@ module OfficialJokeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{type}/ten",
                   "parts" => [
@@ -98,6 +99,7 @@ module OfficialJokeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/ten",
                   "parts" => [
@@ -116,6 +118,7 @@ module OfficialJokeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random_ten",
                   "parts" => [
@@ -151,6 +154,7 @@ module OfficialJokeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{id}",
                   "parts" => [
@@ -184,6 +188,7 @@ module OfficialJokeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/random/{number}",
                   "parts" => [
@@ -217,6 +222,7 @@ module OfficialJokeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{type}/random",
                   "parts" => [
@@ -239,6 +245,7 @@ module OfficialJokeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/random",
                   "parts" => [
@@ -257,6 +264,7 @@ module OfficialJokeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random_joke",
                   "parts" => [
@@ -295,6 +303,7 @@ module OfficialJokeConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/types",
                   "parts" => [
