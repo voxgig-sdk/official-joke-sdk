@@ -13,8 +13,7 @@ export interface Joke {
 }
 
 export interface JokeLoadMatch {
-  id?: number
-  number?: number
+  id: number
 
   // Selects a custom action instead of the plain load:
   //   'random' | 'random'

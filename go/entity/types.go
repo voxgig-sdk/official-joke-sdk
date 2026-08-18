@@ -22,8 +22,7 @@ type Joke struct {
 
 // JokeLoadMatch is the typed request payload for Joke.LoadTyped.
 type JokeLoadMatch struct {
-	Id *int `json:"id,omitempty"`
-	Number *int `json:"number,omitempty"`
+	Id int `json:"id"`
 }
 
 // JokeListMatch is the typed request payload for Joke.ListTyped.

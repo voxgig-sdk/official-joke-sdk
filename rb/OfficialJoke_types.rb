@@ -32,13 +32,9 @@ Joke = Struct.new(
 # Request payload for Joke#load.
 #
 # @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] number
-#   @return [Integer, nil]
+#   @return [Integer]
 JokeLoadMatch = Struct.new(
   :id,
-  :number,
   keyword_init: true
 )
 

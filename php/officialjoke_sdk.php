@@ -40,7 +40,7 @@ class OfficialJokeSDK
         $utility = new OfficialJokeUtility();
         $this->_utility = $utility;
 
-        $config = OfficialJokeConfig::make_config();
+        $config = OfficialJokeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

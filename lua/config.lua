@@ -1,5 +1,8 @@
 -- OfficialJoke SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -26,32 +29,23 @@ local function make_config()
       ["joke"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "id",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "punchline",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "setup",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "type",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
         },
         ["name"] = "joke",
@@ -61,11 +55,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "programming",
                       ["kind"] = "param",
                       ["name"] = "type",
@@ -93,10 +85,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -112,10 +102,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -128,28 +116,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 2,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 1,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
-                      ["index$"] = 0,
                     },
                   },
                 },
@@ -169,21 +152,17 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 5,
                       ["kind"] = "param",
                       ["name"] = "number",
                       ["orig"] = "number",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
-                      ["index$"] = 0,
                     },
                   },
                 },
@@ -204,14 +183,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "programming",
                       ["kind"] = "param",
                       ["name"] = "type",
@@ -239,10 +215,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 2,
               },
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -258,10 +232,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 3,
               },
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -274,10 +246,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 4,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -300,7 +270,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -313,10 +282,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {

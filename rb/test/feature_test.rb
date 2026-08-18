@@ -15,7 +15,7 @@ require_relative "../OfficialJoke_sdk"
 module OfficialJokeFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OfficialJokeConfig.make_config["feature"]
+    f = OfficialJokeConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

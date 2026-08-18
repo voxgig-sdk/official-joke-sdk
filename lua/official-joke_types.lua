@@ -13,8 +13,7 @@
 ---@field type string
 
 ---@class JokeLoadMatch
----@field id? number
----@field number? number
+---@field id number
 
 ---@class JokeListMatch
 ---@field id? number

@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class OfficialJokeConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -32,32 +55,23 @@ class OfficialJokeConfig
         'joke' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'punchline',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'setup',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'joke',
@@ -67,11 +81,9 @@ class OfficialJokeConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'programming',
                         'kind' => 'param',
                         'name' => 'type',
@@ -99,10 +111,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -118,10 +128,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -134,28 +142,23 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -175,21 +178,17 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 5,
                         'kind' => 'param',
                         'name' => 'number',
                         'orig' => 'number',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -210,14 +209,11 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'programming',
                         'kind' => 'param',
                         'name' => 'type',
@@ -245,10 +241,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -264,10 +258,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -280,10 +272,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 4,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -306,7 +296,6 @@ class OfficialJokeConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -319,10 +308,8 @@ class OfficialJokeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [

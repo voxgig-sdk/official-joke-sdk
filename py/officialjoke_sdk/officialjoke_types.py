@@ -26,9 +26,8 @@ class Joke(JokeRequired, total=False):
     id: int
 
 
-class JokeLoadMatch(TypedDict, total=False):
+class JokeLoadMatch(TypedDict):
     id: int
-    number: int
 
 
 class JokeListMatch(TypedDict, total=False):

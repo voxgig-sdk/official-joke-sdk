@@ -23,8 +23,8 @@ class OfficialJokeSDK:
         utility = OfficialJokeUtility()
         self._utility = utility
 
-        from officialjoke_sdk.config import make_config
-        config = make_config()
+        from officialjoke_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

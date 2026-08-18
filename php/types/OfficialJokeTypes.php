@@ -24,8 +24,7 @@ class Joke
 /** Request payload for Joke#load. */
 class JokeLoadMatch
 {
-    public ?int $id = null;
-    public ?int $number = null;
+    public int $id;
 }
 
 /** Request payload for Joke#list. */

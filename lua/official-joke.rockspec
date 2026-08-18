@@ -23,6 +23,7 @@ build = {
   modules = {
     ["official-joke_sdk"] = "official-joke_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }
