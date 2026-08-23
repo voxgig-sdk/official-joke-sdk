@@ -264,10 +264,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `punchline` |  |
-| `setup` |  |
-| `type` |  |
+| `id` | Unique identifier for the joke |
+| `punchline` | The punchline/answer part of the joke |
+| `setup` | The setup/question part of the joke |
+| `type` | The category/type of the joke |
 
 Operations: List, Load.
 
@@ -302,10 +302,10 @@ Create an instance: `$joke = $client->Joke();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
-| `punchline` | `string` |  |
-| `setup` | `string` |  |
-| `type` | `string` |  |
+| `id` | `int` | Unique identifier for the joke |
+| `punchline` | `string` | The punchline/answer part of the joke |
+| `setup` | `string` | The setup/question part of the joke |
+| `type` | `string` | The category/type of the joke |
 
 #### Example: Load
 

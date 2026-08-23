@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -303,10 +303,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `punchline` |  |
-| `setup` |  |
-| `type` |  |
+| `id` | Unique identifier for the joke |
+| `punchline` | The punchline/answer part of the joke |
+| `setup` | The setup/question part of the joke |
+| `type` | The category/type of the joke |
 
 Operations: list, load.
 
@@ -341,10 +341,10 @@ Create an instance: `const joke = client.Joke()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
-| `punchline` | `string` |  |
-| `setup` | `string` |  |
-| `type` | `string` |  |
+| `id` | `number` | Unique identifier for the joke |
+| `punchline` | `string` | The punchline/answer part of the joke |
+| `setup` | `string` | The setup/question part of the joke |
+| `type` | `string` | The category/type of the joke |
 
 #### Example: Load
 

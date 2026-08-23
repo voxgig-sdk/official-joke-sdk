@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "OfficialJoke",
+            "slug": "official-joke",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,21 +54,25 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "short": "Unique identifier for the joke",
             "type": "`$INTEGER`",
           },
           {
             "name": "punchline",
             "req": True,
+            "short": "The punchline/answer part of the joke",
             "type": "`$STRING`",
           },
           {
             "name": "setup",
             "req": True,
+            "short": "The setup/question part of the joke",
             "type": "`$STRING`",
           },
           {
             "name": "type",
             "req": True,
+            "short": "The category/type of the joke",
             "type": "`$STRING`",
           },
         ],

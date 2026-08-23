@@ -257,10 +257,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `punchline` |  |
-| `setup` |  |
-| `type` |  |
+| `id` | Unique identifier for the joke |
+| `punchline` | The punchline/answer part of the joke |
+| `setup` | The setup/question part of the joke |
+| `type` | The category/type of the joke |
 
 Operations: List, Load.
 
@@ -295,10 +295,10 @@ Create an instance: `joke = client.Joke()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
-| `punchline` | `str` |  |
-| `setup` | `str` |  |
-| `type` | `str` |  |
+| `id` | `int` | Unique identifier for the joke |
+| `punchline` | `str` | The punchline/answer part of the joke |
+| `setup` | `str` | The setup/question part of the joke |
+| `type` | `str` | The category/type of the joke |
 
 #### Example: Load
 

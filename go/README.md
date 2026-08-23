@@ -6,7 +6,7 @@ The Golang SDK for the OfficialJoke API — an entity-oriented client using stan
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Joke(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -270,10 +270,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
-| `"punchline"` |  |
-| `"setup"` |  |
-| `"type"` |  |
+| `"id"` | Unique identifier for the joke |
+| `"punchline"` | The punchline/answer part of the joke |
+| `"setup"` | The setup/question part of the joke |
+| `"type"` | The category/type of the joke |
 
 Operations: List, Load.
 
@@ -308,10 +308,10 @@ Create an instance: `joke := client.Joke(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
-| `punchline` | `string` |  |
-| `setup` | `string` |  |
-| `type` | `string` |  |
+| `id` | `int` | Unique identifier for the joke |
+| `punchline` | `string` | The punchline/answer part of the joke |
+| `setup` | `string` | The setup/question part of the joke |
+| `type` | `string` | The category/type of the joke |
 
 #### Example: Load
 
