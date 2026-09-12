@@ -68,6 +68,10 @@ module OfficialJokeConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "joke",
           "op" => {
             "list" => {
@@ -90,10 +94,16 @@ module OfficialJokeConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{type}/ten",
-                  "parts" => [
-                    "jokes",
-                    "{type}",
-                    "ten",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "var" => "type",
+                    },
+                    {
+                      "lit" => "ten",
+                    },
                   ],
                   "select" => {
                     "$action" => "ten",
@@ -105,15 +115,24 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "{type}",
+                    "ten",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/ten",
-                  "parts" => [
-                    "jokes",
-                    "ten",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "lit" => "ten",
+                    },
                   ],
                   "select" => {
                     "$action" => "ten",
@@ -122,20 +141,29 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "ten",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random_ten",
-                  "parts" => [
-                    "random_ten",
+                  "segments" => [
+                    {
+                      "lit" => "random_ten",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "random_ten",
+                  ],
                 },
               ],
             },
@@ -159,9 +187,13 @@ module OfficialJokeConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{id}",
-                  "parts" => [
-                    "jokes",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -172,6 +204,10 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -189,10 +225,16 @@ module OfficialJokeConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/random/{number}",
-                  "parts" => [
-                    "jokes",
-                    "random",
-                    "{number}",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "lit" => "random",
+                    },
+                    {
+                      "var" => "number",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -203,6 +245,11 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "random",
+                    "{number}",
+                  ],
                 },
                 {
                   "args" => {
@@ -220,10 +267,16 @@ module OfficialJokeConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/{type}/random",
-                  "parts" => [
-                    "jokes",
-                    "{type}",
-                    "random",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "var" => "type",
+                    },
+                    {
+                      "lit" => "random",
+                    },
                   ],
                   "select" => {
                     "$action" => "random",
@@ -235,15 +288,24 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "{type}",
+                    "random",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jokes/random",
-                  "parts" => [
-                    "jokes",
-                    "random",
+                  "segments" => [
+                    {
+                      "lit" => "jokes",
+                    },
+                    {
+                      "lit" => "random",
+                    },
                   ],
                   "select" => {
                     "$action" => "random",
@@ -252,20 +314,29 @@ module OfficialJokeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jokes",
+                    "random",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random_joke",
-                  "parts" => [
-                    "random_joke",
+                  "segments" => [
+                    {
+                      "lit" => "random_joke",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "random_joke",
+                  ],
                 },
               ],
             },
@@ -294,14 +365,19 @@ module OfficialJokeConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/types",
-                  "parts" => [
-                    "types",
+                  "segments" => [
+                    {
+                      "lit" => "types",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "types",
+                  ],
                 },
               ],
             },

@@ -1,6 +1,14 @@
 # OfficialJoke SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -77,6 +85,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "joke",
         "op": {
           "list": {
@@ -99,10 +111,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{type}/ten",
-                "parts": [
-                  "jokes",
-                  "{type}",
-                  "ten",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "var": "type",
+                  },
+                  {
+                    "lit": "ten",
+                  },
                 ],
                 "select": {
                   "$action": "ten",
@@ -114,15 +132,24 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "{type}",
+                  "ten",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/ten",
-                "parts": [
-                  "jokes",
-                  "ten",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "lit": "ten",
+                  },
                 ],
                 "select": {
                   "$action": "ten",
@@ -131,20 +158,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "ten",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random_ten",
-                "parts": [
-                  "random_ten",
+                "segments": [
+                  {
+                    "lit": "random_ten",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "random_ten",
+                ],
               },
             ],
           },
@@ -168,9 +204,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{id}",
-                "parts": [
-                  "jokes",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -181,6 +221,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "{id}",
+                ],
               },
               {
                 "args": {
@@ -198,10 +242,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/random/{number}",
-                "parts": [
-                  "jokes",
-                  "random",
-                  "{number}",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "lit": "random",
+                  },
+                  {
+                    "var": "number",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -212,6 +262,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "random",
+                  "{number}",
+                ],
               },
               {
                 "args": {
@@ -229,10 +284,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{type}/random",
-                "parts": [
-                  "jokes",
-                  "{type}",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "var": "type",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -244,15 +305,24 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "{type}",
+                  "random",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/random",
-                "parts": [
-                  "jokes",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "jokes",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -261,20 +331,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jokes",
+                  "random",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random_joke",
-                "parts": [
-                  "random_joke",
+                "segments": [
+                  {
+                    "lit": "random_joke",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "random_joke",
+                ],
               },
             ],
           },
@@ -303,14 +382,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/types",
-                "parts": [
-                  "types",
+                "segments": [
+                  {
+                    "lit": "types",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "types",
+                ],
               },
             ],
           },

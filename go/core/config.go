@@ -60,6 +60,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "joke",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -82,10 +86,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{type}/ten",
-								"parts": []any{
-									"jokes",
-									"{type}",
-									"ten",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"var": "type",
+									},
+									map[string]any{
+										"lit": "ten",
+									},
 								},
 								"select": map[string]any{
 									"$action": "ten",
@@ -97,15 +107,24 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"jokes",
+									"{type}",
+									"ten",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/ten",
-								"parts": []any{
-									"jokes",
-									"ten",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"lit": "ten",
+									},
 								},
 								"select": map[string]any{
 									"$action": "ten",
@@ -114,19 +133,28 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"jokes",
+									"ten",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/random_ten",
-								"parts": []any{
-									"random_ten",
+								"segments": []any{
+									map[string]any{
+										"lit": "random_ten",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"random_ten",
 								},
 							},
 						},
@@ -151,9 +179,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{id}",
-								"parts": []any{
-									"jokes",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -163,6 +195,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"jokes",
+									"{id}",
 								},
 							},
 							map[string]any{
@@ -181,10 +217,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/random/{number}",
-								"parts": []any{
-									"jokes",
-									"random",
-									"{number}",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"lit": "random",
+									},
+									map[string]any{
+										"var": "number",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -194,6 +236,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"jokes",
+									"random",
+									"{number}",
 								},
 							},
 							map[string]any{
@@ -212,10 +259,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{type}/random",
-								"parts": []any{
-									"jokes",
-									"{type}",
-									"random",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"var": "type",
+									},
+									map[string]any{
+										"lit": "random",
+									},
 								},
 								"select": map[string]any{
 									"$action": "random",
@@ -227,15 +280,24 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"jokes",
+									"{type}",
+									"random",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/random",
-								"parts": []any{
-									"jokes",
-									"random",
+								"segments": []any{
+									map[string]any{
+										"lit": "jokes",
+									},
+									map[string]any{
+										"lit": "random",
+									},
 								},
 								"select": map[string]any{
 									"$action": "random",
@@ -244,19 +306,28 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"jokes",
+									"random",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/random_joke",
-								"parts": []any{
-									"random_joke",
+								"segments": []any{
+									map[string]any{
+										"lit": "random_joke",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"random_joke",
 								},
 							},
 						},
@@ -286,13 +357,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/types",
-								"parts": []any{
-									"types",
+								"segments": []any{
+									map[string]any{
+										"lit": "types",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"types",
 								},
 							},
 						},
@@ -304,6 +380,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

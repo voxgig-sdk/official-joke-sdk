@@ -56,10 +56,16 @@ main: kit: entity: joke: {
           }
           method: "GET"
           orig: "/jokes/{type}/ten"
-          parts: [
-            "jokes"
-            "{type}"
-            "ten"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "type"
+            }
+            {
+              lit: "ten"
+            }
           ]
           select: {
             "$action": "ten"
@@ -75,9 +81,13 @@ main: kit: entity: joke: {
         {
           method: "GET"
           orig: "/jokes/ten"
-          parts: [
-            "jokes"
-            "ten"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "ten"
+            }
           ]
           select: {
             "$action": "ten"
@@ -90,8 +100,10 @@ main: kit: entity: joke: {
         {
           method: "GET"
           orig: "/random_ten"
-          parts: [
-            "random_ten"
+          segments: [
+            {
+              lit: "random_ten"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -118,9 +130,13 @@ main: kit: entity: joke: {
           }
           method: "GET"
           orig: "/jokes/{id}"
-          parts: [
-            "jokes"
-            "{id}"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -147,10 +163,16 @@ main: kit: entity: joke: {
           }
           method: "GET"
           orig: "/jokes/random/{number}"
-          parts: [
-            "jokes"
-            "random"
-            "{number}"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "random"
+            }
+            {
+              var: "number"
+            }
           ]
           select: {
             exist: [
@@ -177,10 +199,16 @@ main: kit: entity: joke: {
           }
           method: "GET"
           orig: "/jokes/{type}/random"
-          parts: [
-            "jokes"
-            "{type}"
-            "random"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "type"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"
@@ -196,9 +224,13 @@ main: kit: entity: joke: {
         {
           method: "GET"
           orig: "/jokes/random"
-          parts: [
-            "jokes"
-            "random"
+          segments: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"
@@ -211,8 +243,10 @@ main: kit: entity: joke: {
         {
           method: "GET"
           orig: "/random_joke"
-          parts: [
-            "random_joke"
+          segments: [
+            {
+              lit: "random_joke"
+            }
           ]
           transform: {
             req: "`reqdata`"
