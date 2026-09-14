@@ -105,7 +105,7 @@ local results, err = client:Joke():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/official-joke` | publish pending — [install from git tag](https://github.com/voxgig-sdk/official-joke-sdk/releases) |
+| TypeScript | `@voxgig-sdk/official-joke-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/official-joke-sdk/releases) |
 | Python | `voxgig-sdk-official-joke` | publish pending — [install from git tag](https://github.com/voxgig-sdk/official-joke-sdk/releases) |
 | PHP | `voxgig-sdk/official-joke` | publish pending — [install from git tag](https://github.com/voxgig-sdk/official-joke-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/official-joke-sdk/go` | `go get github.com/voxgig-sdk/official-joke-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Joke():list()
 ### TypeScript
 
 ```ts
-import { OfficialJokeSDK } from '@voxgig-sdk/official-joke'
+import { OfficialJokeSDK } from '@voxgig-sdk/official-joke-sdk'
 
 const client = new OfficialJokeSDK()
 
