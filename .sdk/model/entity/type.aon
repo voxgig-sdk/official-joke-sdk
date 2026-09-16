@@ -10,6 +10,12 @@ main: kit: entity: type: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /types"
+            json: "{\"operationId\":\"getJokeTypes\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"general\",\"programming\",\"knock-knock\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"List of joke types\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/types"
           segments: [

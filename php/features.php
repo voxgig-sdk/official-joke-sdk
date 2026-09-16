@@ -4,7 +4,10 @@ declare(strict_types=1);
 // OfficialJoke SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class OfficialJokeFeatures
@@ -14,8 +17,14 @@ class OfficialJokeFeatures
         switch ($name) {
             case "base":
                 return new OfficialJokeBaseFeature();
+            case "ratelimit":
+                return new OfficialJokeRatelimitFeature();
+            case "retry":
+                return new OfficialJokeRetryFeature();
             case "test":
                 return new OfficialJokeTestFeature();
+            case "timeout":
+                return new OfficialJokeTimeoutFeature();
             default:
                 return new OfficialJokeBaseFeature();
         }
@@ -31,7 +40,10 @@ class OfficialJokeFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

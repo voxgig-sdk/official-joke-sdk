@@ -10,5 +10,36 @@
     "type": {
       "type_ref01": {}
     }
+  },
+  "requests": {
+    "GET /types": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getJokeTypes",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  "general",
+                  "programming",
+                  "knock-knock"
+                ],
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "List of joke types"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

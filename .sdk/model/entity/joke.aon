@@ -54,6 +54,12 @@ main: kit: entity: joke: {
               }
             ]
           }
+          contract: {
+            id: "GET /jokes/{type}/ten"
+            json: "{\"operationId\":\"getTenRandomJokesByType\",\"parameters\":[{\"description\":\"The type/category of jokes to retrieve\",\"in\":\"path\",\"name\":\"type\",\"required\":true,\"schema\":{\"example\":\"programming\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"},\"maxItems\":10,\"minItems\":10,\"type\":\"array\"}}},\"description\":\"Ten random jokes of the specified type\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/jokes/{type}/ten"
           segments: [
@@ -79,6 +85,12 @@ main: kit: entity: joke: {
           }
         }
         {
+          contract: {
+            id: "GET /jokes/ten"
+            json: "{\"operationId\":\"getTenRandomJokesAlt\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"},\"maxItems\":10,\"minItems\":10,\"type\":\"array\"}}},\"description\":\"Ten random jokes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/jokes/ten"
           segments: [
@@ -98,6 +110,12 @@ main: kit: entity: joke: {
           }
         }
         {
+          contract: {
+            id: "GET /random_ten"
+            json: "{\"operationId\":\"getTenRandomJokes\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"},\"maxItems\":10,\"minItems\":10,\"type\":\"array\"}}},\"description\":\"Ten random jokes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/random_ten"
           segments: [
@@ -127,6 +145,12 @@ main: kit: entity: joke: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /jokes/{id}"
+            json: "{\"operationId\":\"getJokeById\",\"parameters\":[{\"description\":\"The ID of the joke to retrieve\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"id\":1,\"punchline\":\"Even if you're wrong, you're only off by a bit.\",\"setup\":\"What's the best thing about a Boolean?\",\"type\":\"programming\"},\"schema\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"}}},\"description\":\"A joke with the specified ID\"},\"404\":{\"description\":\"Joke not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/jokes/{id}"
@@ -160,6 +184,12 @@ main: kit: entity: joke: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /jokes/random/{number}"
+            json: "{\"operationId\":\"getRandomJokesNumber\",\"parameters\":[{\"description\":\"The number of random jokes to retrieve\",\"in\":\"path\",\"name\":\"number\",\"required\":true,\"schema\":{\"example\":5,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Specified number of random jokes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/jokes/random/{number}"
@@ -197,6 +227,12 @@ main: kit: entity: joke: {
               }
             ]
           }
+          contract: {
+            id: "GET /jokes/{type}/random"
+            json: "{\"operationId\":\"getRandomJokeByType\",\"parameters\":[{\"description\":\"The type/category of joke to retrieve\",\"in\":\"path\",\"name\":\"type\",\"required\":true,\"schema\":{\"example\":\"programming\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"id\":1,\"punchline\":\"Even if you're wrong, you're only off by a bit.\",\"setup\":\"What's the best thing about a Boolean?\",\"type\":\"programming\"},\"schema\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"}}},\"description\":\"A random joke of the specified type\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/jokes/{type}/random"
           segments: [
@@ -222,6 +258,12 @@ main: kit: entity: joke: {
           }
         }
         {
+          contract: {
+            id: "GET /jokes/random"
+            json: "{\"operationId\":\"getRandomJokeAlt\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"id\":1,\"punchline\":\"Even if you're wrong, you're only off by a bit.\",\"setup\":\"What's the best thing about a Boolean?\",\"type\":\"programming\"},\"schema\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"}}},\"description\":\"A random joke\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/jokes/random"
           segments: [
@@ -241,6 +283,12 @@ main: kit: entity: joke: {
           }
         }
         {
+          contract: {
+            id: "GET /random_joke"
+            json: "{\"operationId\":\"getRandomJoke\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"id\":1,\"punchline\":\"Even if you're wrong, you're only off by a bit.\",\"setup\":\"What's the best thing about a Boolean?\",\"type\":\"programming\"},\"schema\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the joke\",\"example\":1,\"type\":\"integer\"},\"punchline\":{\"description\":\"The punchline/answer part of the joke\",\"example\":\"Even if you're wrong, you're only off by a bit.\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup/question part of the joke\",\"example\":\"What's the best thing about a Boolean?\",\"type\":\"string\"},\"type\":{\"description\":\"The category/type of the joke\",\"example\":\"programming\",\"type\":\"string\"}},\"required\":[\"type\",\"setup\",\"punchline\"],\"type\":\"object\"}}},\"description\":\"A random joke\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/random_joke"
           segments: [
