@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicJokeFlow.aon"
-@"BasicTypeFlow.aon"
+@"./BasicJokeFlow.aon"
+@"./BasicTypeFlow.aon"

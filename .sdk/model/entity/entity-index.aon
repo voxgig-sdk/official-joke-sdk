@@ -1,4 +1,4 @@
 # Entity Models
 
-@"joke.aon"
-@"type.aon"
+@"./joke.aon"
+@"./type.aon"
