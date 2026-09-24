@@ -1,0 +1,306 @@
+# Entity: joke
+
+main: kit: entity: joke: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the joke"
+      t: "`$INTEGER`"
+    }
+    punchline: {
+      h: "Punchline"
+      n: "punchline"
+      r: true
+      sh: "The punchline/answer part of the joke"
+      t: "`$STRING`"
+    }
+    setup: {
+      h: "Setup"
+      n: "setup"
+      r: true
+      sh: "The setup/question part of the joke"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "The category/type of the joke"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "joke"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /jokes/{type}/ten"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "programming"
+                k: "param"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/jokes/{type}/ten"
+          q: {
+            "$action": "ten"
+            exist: [
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "type"
+            }
+            {
+              lit: "ten"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /jokes/ten"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/jokes/ten"
+          q: {
+            "$action": "ten"
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "ten"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /random_ten"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/random_ten"
+          s: [
+            {
+              lit: "random_ten"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /jokes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 1
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/jokes/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /jokes/random/{number}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 5
+                k: "param"
+                n: "number"
+                or: "number"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/jokes/random/{number}"
+          q: {
+            exist: [
+              "number"
+            ]
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "random"
+            }
+            {
+              var: "number"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /jokes/{type}/random"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "programming"
+                k: "param"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/jokes/{type}/random"
+          q: {
+            "$action": "random"
+            exist: [
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              var: "type"
+            }
+            {
+              lit: "random"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /jokes/random"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/jokes/random"
+          q: {
+            "$action": "random"
+          }
+          s: [
+            {
+              lit: "jokes"
+            }
+            {
+              lit: "random"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /random_joke"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/random_joke"
+          s: [
+            {
+              lit: "random_joke"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

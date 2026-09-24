@@ -1,0 +1,39 @@
+# Entity: type
+
+main: kit: entity: type: {
+
+  alias: field: {}
+
+  name: "type"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /types"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/types"
+          s: [
+            {
+              lit: "types"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

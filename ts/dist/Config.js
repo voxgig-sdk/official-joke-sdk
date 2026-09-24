@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -115,26 +108,30 @@ class Config {
             "fields": [
                 {
                     "name": "id",
-                    "short": "Unique identifier for the joke",
-                    "type": "`$INTEGER`"
+                    "title": "Id",
+                    "type": "`$INTEGER`",
+                    "short": "Unique identifier for the joke"
                 },
                 {
                     "name": "punchline",
+                    "title": "Punchline",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "The punchline/answer part of the joke",
-                    "type": "`$STRING`"
+                    "short": "The punchline/answer part of the joke"
                 },
                 {
                     "name": "setup",
+                    "title": "Setup",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "The setup/question part of the joke",
-                    "type": "`$STRING`"
+                    "short": "The setup/question part of the joke"
                 },
                 {
                     "name": "type",
+                    "title": "Type",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "The category/type of the joke",
-                    "type": "`$STRING`"
+                    "short": "The category/type of the joke"
                 }
             ],
             "id": {
@@ -148,18 +145,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "programming",
-                                        "kind": "param",
-                                        "name": "type",
-                                        "orig": "type",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/{type}/ten",
@@ -174,24 +159,36 @@ class Config {
                                     "lit": "ten"
                                 }
                             ],
+                            "parts": [
+                                "jokes",
+                                "{type}",
+                                "ten"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "type",
+                                        "orig": "type",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "programming"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "ten",
                                 "exist": [
                                     "type"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "jokes",
-                                "{type}",
-                                "ten"
-                            ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/ten",
@@ -203,20 +200,21 @@ class Config {
                                     "lit": "ten"
                                 }
                             ],
-                            "select": {
-                                "$action": "ten"
-                            },
+                            "parts": [
+                                "jokes",
+                                "ten"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "jokes",
-                                "ten"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "ten"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/random_ten",
@@ -225,14 +223,16 @@ class Config {
                                     "lit": "random_ten"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "random_ten"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "random_ten"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -241,18 +241,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1,
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/{id}",
@@ -264,33 +252,34 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "jokes",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "jokes",
-                                "{id}"
-                            ]
-                        },
-                        {
                             "args": {
                                 "params": [
                                     {
-                                        "example": 5,
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$INTEGER`",
                                         "kind": "param",
-                                        "name": "number",
-                                        "orig": "number",
                                         "reqd": true,
-                                        "type": "`$INTEGER`"
+                                        "example": 1
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/random/{number}",
@@ -305,34 +294,35 @@ class Config {
                                     "var": "number"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "number"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "jokes",
                                 "random",
                                 "{number}"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "params": [
                                     {
-                                        "example": "programming",
+                                        "name": "number",
+                                        "orig": "number",
+                                        "type": "`$INTEGER`",
                                         "kind": "param",
-                                        "name": "type",
-                                        "orig": "type",
                                         "reqd": true,
-                                        "type": "`$STRING`"
+                                        "example": 5
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "number"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/{type}/random",
@@ -347,24 +337,36 @@ class Config {
                                     "lit": "random"
                                 }
                             ],
+                            "parts": [
+                                "jokes",
+                                "{type}",
+                                "random"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "type",
+                                        "orig": "type",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "programming"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "random",
                                 "exist": [
                                     "type"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "jokes",
-                                "{type}",
-                                "random"
-                            ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/jokes/random",
@@ -376,20 +378,21 @@ class Config {
                                     "lit": "random"
                                 }
                             ],
-                            "select": {
-                                "$action": "random"
-                            },
+                            "parts": [
+                                "jokes",
+                                "random"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "jokes",
-                                "random"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "random"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/random_joke",
@@ -398,27 +401,22 @@ class Config {
                                     "lit": "random_joke"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "random_joke"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "random_joke"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "random"
-                    ],
-                    [
-                        "joke"
-                    ]
-                ]
+                "ancestors": []
             }
         },
         "type": {
@@ -430,7 +428,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/types",
@@ -439,14 +436,16 @@ class Config {
                                     "lit": "types"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "types"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "types"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }

@@ -92,26 +92,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the joke",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the joke",
 					},
 					map[string]any{
 						"name": "punchline",
+						"title": "Punchline",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The punchline/answer part of the joke",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "setup",
+						"title": "Setup",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The setup/question part of the joke",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The category/type of the joke",
-						"type": "`$STRING`",
 					},
 				},
 				"id": map[string]any{
@@ -125,18 +129,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "programming",
-											"kind": "param",
-											"name": "type",
-											"orig": "type",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{type}/ten",
@@ -151,24 +143,36 @@ func MakeConfig() map[string]any {
 										"lit": "ten",
 									},
 								},
+								"parts": []any{
+									"jokes",
+									"{type}",
+									"ten",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "programming",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "ten",
 									"exist": []any{
 										"type",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"jokes",
-									"{type}",
-									"ten",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/ten",
@@ -180,20 +184,21 @@ func MakeConfig() map[string]any {
 										"lit": "ten",
 									},
 								},
-								"select": map[string]any{
-									"$action": "ten",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"jokes",
 									"ten",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "ten",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/random_ten",
@@ -202,14 +207,16 @@ func MakeConfig() map[string]any {
 										"lit": "random_ten",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"random_ten",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"random_ten",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -218,18 +225,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{id}",
@@ -241,33 +236,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"jokes",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"jokes",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 5,
-											"kind": "param",
-											"name": "number",
-											"orig": "number",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/random/{number}",
@@ -282,34 +278,35 @@ func MakeConfig() map[string]any {
 										"var": "number",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"number",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"jokes",
 									"random",
 									"{number}",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"example": "programming",
+											"name": "number",
+											"orig": "number",
+											"type": "`$INTEGER`",
 											"kind": "param",
-											"name": "type",
-											"orig": "type",
 											"reqd": true,
-											"type": "`$STRING`",
+											"example": 5,
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"number",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/{type}/random",
@@ -324,24 +321,36 @@ func MakeConfig() map[string]any {
 										"lit": "random",
 									},
 								},
+								"parts": []any{
+									"jokes",
+									"{type}",
+									"random",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "programming",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "random",
 									"exist": []any{
 										"type",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"jokes",
-									"{type}",
-									"random",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jokes/random",
@@ -353,20 +362,21 @@ func MakeConfig() map[string]any {
 										"lit": "random",
 									},
 								},
-								"select": map[string]any{
-									"$action": "random",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"jokes",
 									"random",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "random",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/random_joke",
@@ -375,27 +385,22 @@ func MakeConfig() map[string]any {
 										"lit": "random_joke",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"random_joke",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"random_joke",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"random",
-						},
-						[]any{
-							"joke",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"type": map[string]any{
@@ -407,7 +412,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/types",
@@ -416,14 +420,16 @@ func MakeConfig() map[string]any {
 										"lit": "types",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"types",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"types",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

@@ -117,26 +117,30 @@ def make_config():
         "fields": [
           {
             "name": "id",
-            "short": "Unique identifier for the joke",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the joke",
           },
           {
             "name": "punchline",
+            "title": "Punchline",
+            "type": "`$STRING`",
             "req": True,
             "short": "The punchline/answer part of the joke",
-            "type": "`$STRING`",
           },
           {
             "name": "setup",
+            "title": "Setup",
+            "type": "`$STRING`",
             "req": True,
             "short": "The setup/question part of the joke",
-            "type": "`$STRING`",
           },
           {
             "name": "type",
+            "title": "Type",
+            "type": "`$STRING`",
             "req": True,
             "short": "The category/type of the joke",
-            "type": "`$STRING`",
           },
         ],
         "id": {
@@ -150,18 +154,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "programming",
-                      "kind": "param",
-                      "name": "type",
-                      "orig": "type",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{type}/ten",
@@ -176,24 +168,36 @@ def make_config():
                     "lit": "ten",
                   },
                 ],
+                "parts": [
+                  "jokes",
+                  "{type}",
+                  "ten",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "programming",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "ten",
                   "exist": [
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "jokes",
-                  "{type}",
-                  "ten",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/ten",
@@ -205,20 +209,21 @@ def make_config():
                     "lit": "ten",
                   },
                 ],
-                "select": {
-                  "$action": "ten",
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "jokes",
                   "ten",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {
+                  "$action": "ten",
+                },
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random_ten",
@@ -227,14 +232,16 @@ def make_config():
                     "lit": "random_ten",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "random_ten",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "random_ten",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -243,18 +250,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1,
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{id}",
@@ -266,33 +261,34 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "jokes",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "jokes",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 5,
-                      "kind": "param",
-                      "name": "number",
-                      "orig": "number",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/random/{number}",
@@ -307,34 +303,35 @@ def make_config():
                     "var": "number",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "number",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "jokes",
                   "random",
                   "{number}",
                 ],
-              },
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "example": "programming",
+                      "name": "number",
+                      "orig": "number",
+                      "type": "`$INTEGER`",
                       "kind": "param",
-                      "name": "type",
-                      "orig": "type",
                       "reqd": True,
-                      "type": "`$STRING`",
+                      "example": 5,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "number",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/{type}/random",
@@ -349,24 +346,36 @@ def make_config():
                     "lit": "random",
                   },
                 ],
+                "parts": [
+                  "jokes",
+                  "{type}",
+                  "random",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "programming",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "random",
                   "exist": [
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "jokes",
-                  "{type}",
-                  "random",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jokes/random",
@@ -378,20 +387,21 @@ def make_config():
                     "lit": "random",
                   },
                 ],
-                "select": {
-                  "$action": "random",
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "jokes",
                   "random",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {
+                  "$action": "random",
+                },
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random_joke",
@@ -400,27 +410,22 @@ def make_config():
                     "lit": "random_joke",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "random_joke",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "random_joke",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "random",
-            ],
-            [
-              "joke",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "type": {
@@ -432,7 +437,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/types",
@@ -441,14 +445,16 @@ def make_config():
                     "lit": "types",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "types",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "types",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },

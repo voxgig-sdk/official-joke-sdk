@@ -19,7 +19,6 @@ import type {
   TypeListMatch,
 } from '../OfficialJokeTypes'
 
-// TODO: needs Entity superclass
 class TypeEntity extends OfficialJokeEntityBase<Type> {
 
   constructor(client: OfficialJokeSDK, entopts: any) {

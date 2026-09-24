@@ -164,7 +164,7 @@ func jokeBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"joke01", "joke02", "joke03", "random01", "random02", "random03"},
+		[]any{"joke01", "joke02", "joke03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

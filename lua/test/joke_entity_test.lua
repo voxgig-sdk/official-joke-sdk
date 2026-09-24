@@ -124,7 +124,7 @@ function joke_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "joke01", "joke02", "joke03", "random01", "random02", "random03" },
+    { "joke01", "joke02", "joke03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

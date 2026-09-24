@@ -43,7 +43,7 @@ local jokes, err = client:Joke():list()
 if err then error(err) end
 
 for _, item in ipairs(jokes) do
-  print(item["id"], item["punchline"])
+  print(item["id"])
 end
 ```
 

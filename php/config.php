@@ -114,26 +114,30 @@ class OfficialJokeConfig
           'fields' => [
             [
               'name' => 'id',
-              'short' => 'Unique identifier for the joke',
+              'title' => 'Id',
               'type' => '`$INTEGER`',
+              'short' => 'Unique identifier for the joke',
             ],
             [
               'name' => 'punchline',
+              'title' => 'Punchline',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The punchline/answer part of the joke',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'setup',
+              'title' => 'Setup',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The setup/question part of the joke',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'title' => 'Type',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The category/type of the joke',
-              'type' => '`$STRING`',
             ],
           ],
           'id' => [
@@ -147,18 +151,6 @@ class OfficialJokeConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => 'programming',
-                        'kind' => 'param',
-                        'name' => 'type',
-                        'orig' => 'type',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{type}/ten',
@@ -173,24 +165,36 @@ class OfficialJokeConfig
                       'lit' => 'ten',
                     ],
                   ],
+                  'parts' => [
+                    'jokes',
+                    '{type}',
+                    'ten',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 'programming',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'ten',
                     'exist' => [
                       'type',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'jokes',
-                    '{type}',
-                    'ten',
-                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/ten',
@@ -202,20 +206,21 @@ class OfficialJokeConfig
                       'lit' => 'ten',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'ten',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'jokes',
                     'ten',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'ten',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random_ten',
@@ -224,14 +229,16 @@ class OfficialJokeConfig
                       'lit' => 'random_ten',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'random_ten',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'random_ten',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -240,18 +247,6 @@ class OfficialJokeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => 1,
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{id}',
@@ -263,33 +258,34 @@ class OfficialJokeConfig
                       'var' => 'id',
                     ],
                   ],
+                  'parts' => [
+                    'jokes',
+                    '{id}',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 1,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'id',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'jokes',
-                    '{id}',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => 5,
-                        'kind' => 'param',
-                        'name' => 'number',
-                        'orig' => 'number',
-                        'reqd' => true,
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/random/{number}',
@@ -304,34 +300,35 @@ class OfficialJokeConfig
                       'var' => 'number',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'number',
-                    ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'jokes',
                     'random',
                     '{number}',
                   ],
-                ],
-                [
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
                   'args' => [
                     'params' => [
                       [
-                        'example' => 'programming',
+                        'name' => 'number',
+                        'orig' => 'number',
+                        'type' => '`$INTEGER`',
                         'kind' => 'param',
-                        'name' => 'type',
-                        'orig' => 'type',
                         'reqd' => true,
-                        'type' => '`$STRING`',
+                        'example' => 5,
                       ],
                     ],
                   ],
+                  'select' => [
+                    'exist' => [
+                      'number',
+                    ],
+                  ],
+                ],
+                [
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/{type}/random',
@@ -346,24 +343,36 @@ class OfficialJokeConfig
                       'lit' => 'random',
                     ],
                   ],
+                  'parts' => [
+                    'jokes',
+                    '{type}',
+                    'random',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 'programming',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'random',
                     'exist' => [
                       'type',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'jokes',
-                    '{type}',
-                    'random',
-                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jokes/random',
@@ -375,20 +384,21 @@ class OfficialJokeConfig
                       'lit' => 'random',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'random',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'jokes',
                     'random',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'random',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random_joke',
@@ -397,27 +407,22 @@ class OfficialJokeConfig
                       'lit' => 'random_joke',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'random_joke',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'random_joke',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
           ],
           'relations' => [
-            'ancestors' => [
-              [
-                'random',
-              ],
-              [
-                'joke',
-              ],
-            ],
+            'ancestors' => [],
           ],
         ],
         'type' => [
@@ -429,7 +434,6 @@ class OfficialJokeConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/types',
@@ -438,14 +442,16 @@ class OfficialJokeConfig
                       'lit' => 'types',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'types',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'types',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],

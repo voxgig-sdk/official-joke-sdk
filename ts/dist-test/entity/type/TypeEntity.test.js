@@ -44,10 +44,6 @@ const live_runner_1 = require("../../live-runner");
 const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('TypeEntity', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -66,7 +62,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "type", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /types", "json": "{\"operationId\":\"getJokeTypes\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"general\",\"programming\",\"knock-knock\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"List of joke types\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/types", "segments": [{ "lit": "types" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "type", "name__orig": "type", "Name": "Type", "name_": "type", "name-": "type", "NAME": "TYPE", "index$": 1 }, { "active": true, "entity": "type", "key$": "BasicTypeFlow", "kind": "basic", "name": "BasicTypeFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "type_ref01" } }], "index$": 0 }] }, 'Type');
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "type", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /types", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/types", "q": {}, "r": {}, "s": [{ "lit": "types" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "type", "name__orig": "type", "Name": "Type", "name_": "type", "name-": "type", "NAME": "TYPE", "index$": 1 }, { "active": true, "entity": "type", "key$": "BasicTypeFlow", "kind": "basic", "name": "BasicTypeFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "type_ref01" } }], "index$": 0 }] }, 'Type', { "GET /types": { "protocol": "http", "operationId": "getJokeTypes", "responses": { "200": { "description": "List of joke types", "content": { "application/json": { "schema": { "type": "array", "items": { "type": "string", "key$": "items" } }, "example": ["general", "programming", "knock-knock"] } } } }, "parameters": [], "securitySource": "unspecified" } });
         }
         const client = setup.client;
         const struct = setup.struct;

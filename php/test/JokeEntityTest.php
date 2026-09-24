@@ -119,7 +119,7 @@ function joke_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["joke01", "joke02", "joke03", "random01", "random02", "random03"] as $k) {
+    foreach (["joke01", "joke02", "joke03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
