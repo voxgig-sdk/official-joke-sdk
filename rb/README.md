@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/official-joke-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/official-joke-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = OfficialJokeSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Joke records — iterate directly.
+  # list returns an Array of Joke entities, one per record; data_get reads the record.
   jokes = client.Joke.list
   jokes.each do |item|
-    puts "#{item["id"]} #{item["punchline"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["punchline"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Joke record (raises on error).
   joke = client.Joke.load({ "id" => 1 })
-  puts joke
+  puts joke.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -143,10 +144,10 @@ client = OfficialJokeSDK.test({
   "entity" => { "joke" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-joke = client.Joke.list()
-puts joke
+# list returns an Array of Joke entities, one per mock record (raises on
+# error); data_get reads each record.
+jokes = client.Joke.list()
+jokes.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -231,8 +232,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -242,9 +243,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `OfficialJokeError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`OfficialJokeError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -316,8 +318,9 @@ joke = client.Joke.load({ "id" => 1 })
 #### Example: List
 
 ```ruby
-# list returns an Array of Joke records (raises on error).
+# list returns an Array of Joke entities, one per record (raises on error).
 jokes = client.Joke.list
+jokes.each { |item| puts item.data_get }
 ```
 
 
@@ -334,8 +337,9 @@ Create an instance: `type = client.Type`
 #### Example: List
 
 ```ruby
-# list returns an Array of Type records (raises on error).
+# list returns an Array of Type entities, one per record (raises on error).
 types = client.Type.list
+types.each { |item| puts item.data_get }
 ```
 
 ## Features

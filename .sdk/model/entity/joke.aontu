@@ -71,6 +71,10 @@ main: kit: entity: joke: {
               "type"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jokes"
@@ -98,6 +102,10 @@ main: kit: entity: joke: {
           q: {
             "$action": "ten"
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jokes"
@@ -119,6 +127,10 @@ main: kit: entity: joke: {
           }
           m: "GET"
           o: "/random_ten"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "random_ten"
@@ -159,6 +171,10 @@ main: kit: entity: joke: {
               "id"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jokes"
@@ -196,6 +212,10 @@ main: kit: entity: joke: {
             exist: [
               "number"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -239,6 +259,10 @@ main: kit: entity: joke: {
               "type"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jokes"
@@ -266,6 +290,10 @@ main: kit: entity: joke: {
           q: {
             "$action": "random"
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jokes"
@@ -287,6 +315,10 @@ main: kit: entity: joke: {
           }
           m: "GET"
           o: "/random_joke"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "random_joke"
